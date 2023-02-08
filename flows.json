@@ -1,0 +1,138 @@
+[
+    {
+        "id": "21cf0363a05e7524",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7aafa6ac78d8b9f7",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a8d6b57cd3d5d459",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "13977767b5ec6ed3",
+        "type": "inject",
+        "z": "21cf0363a05e7524",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello!",
+        "payloadType": "str",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "4c6e26a7c1a6582b"
+            ]
+        ]
+    },
+    {
+        "id": "4c6e26a7c1a6582b",
+        "type": "debug",
+        "z": "21cf0363a05e7524",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5a6c6a9c8a209888",
+        "type": "comment",
+        "z": "21cf0363a05e7524",
+        "name": "This is our initial flow :))",
+        "info": "",
+        "x": 480,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2b7add4a3d2955f8",
+        "type": "inject",
+        "z": "a8d6b57cd3d5d459",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello!",
+        "payloadType": "str",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "c6f19edf22677511"
+            ]
+        ]
+    },
+    {
+        "id": "c6f19edf22677511",
+        "type": "debug",
+        "z": "a8d6b57cd3d5d459",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3dbf22fe6d4575f6",
+        "type": "comment",
+        "z": "a8d6b57cd3d5d459",
+        "name": "This is our initial flow :))",
+        "info": "",
+        "x": 480,
+        "y": 220,
+        "wires": []
+    }
+]
