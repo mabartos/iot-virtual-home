@@ -2,61 +2,195 @@
     {
         "id": "21cf0363a05e7524",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Lights Living Room",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "7aafa6ac78d8b9f7",
+        "id": "72cebb9d0897dcf1",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Central Heating",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "a8d6b57cd3d5d459",
+        "id": "b1c73a27875ad110",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Lights Living Room Simulator",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "13977767b5ec6ed3",
-        "type": "inject",
+        "id": "27f595115c5b78b0",
+        "type": "tab",
+        "label": "Central Heating Simulator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b773633e083bfda2",
+        "type": "server",
+        "alias": "thingtia_manuel",
+        "host": "api.thingtia.cloud",
+        "acceptUntrusted": true,
+        "apiKey": ""
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c7c1f531dc14f272",
+        "type": "mqtt in",
         "z": "21cf0363a05e7524",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Hello!",
-        "payloadType": "str",
-        "x": 370,
-        "y": 120,
+        "name": "Lights topic",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 500,
         "wires": [
             [
-                "4c6e26a7c1a6582b"
+                "d59b13643d6f480e"
             ]
         ]
     },
     {
-        "id": "4c6e26a7c1a6582b",
+        "id": "856c9635b0125628",
+        "type": "mqtt out",
+        "z": "21cf0363a05e7524",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 840,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "b874f26558e58f0b",
+        "type": "inject",
+        "z": "21cf0363a05e7524",
+        "name": "Initiator",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "none",
+        "payloadType": "str",
+        "x": 320,
+        "y": 620,
+        "wires": [
+            [
+                "005c105de994e187"
+            ]
+        ]
+    },
+    {
+        "id": "d59b13643d6f480e",
+        "type": "function",
+        "z": "21cf0363a05e7524",
+        "name": "Store State",
+        "func": "flow.set(\"light_state\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 500,
+        "wires": [
+            [
+                "43ed618d0cfc7188"
+            ]
+        ]
+    },
+    {
+        "id": "43ed618d0cfc7188",
         "type": "debug",
         "z": "21cf0363a05e7524",
-        "name": "debug 1",
+        "name": "Store State",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "005c105de994e187",
+        "type": "function",
+        "z": "21cf0363a05e7524",
+        "name": "Current power",
+        "func": "var state = flow.get(\"light_state\")\n\nif(state === \"ON\"){\n    msg.payload = 60\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 620,
+        "wires": [
+            [
+                "856c9635b0125628",
+                "dc9d7620d8b6727b"
+            ]
+        ]
+    },
+    {
+        "id": "dc9d7620d8b6727b",
+        "type": "debug",
+        "z": "21cf0363a05e7524",
+        "name": "Power consumption",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -65,54 +199,135 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
-        "y": 120,
+        "x": 810,
+        "y": 700,
         "wires": []
     },
     {
-        "id": "5a6c6a9c8a209888",
-        "type": "comment",
-        "z": "21cf0363a05e7524",
-        "name": "This is our initial flow :))",
-        "info": "",
-        "x": 480,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "2b7add4a3d2955f8",
-        "type": "inject",
-        "z": "a8d6b57cd3d5d459",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Hello!",
-        "payloadType": "str",
-        "x": 370,
-        "y": 120,
+        "id": "4dad1370f004240b",
+        "type": "mqtt in",
+        "z": "72cebb9d0897dcf1",
+        "name": "Central Heating topic",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 360,
+        "y": 280,
         "wires": [
             [
-                "c6f19edf22677511"
+                "6f32a49143ef4324"
             ]
         ]
     },
     {
-        "id": "c6f19edf22677511",
+        "id": "e63c3c6ca2e693ad",
+        "type": "mqtt out",
+        "z": "72cebb9d0897dcf1",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 860,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f0a7bbe6c4d8ec67",
+        "type": "inject",
+        "z": "72cebb9d0897dcf1",
+        "name": "Initiator",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "none",
+        "payloadType": "str",
+        "x": 340,
+        "y": 400,
+        "wires": [
+            [
+                "245f6cec4e848b2f"
+            ]
+        ]
+    },
+    {
+        "id": "6f32a49143ef4324",
+        "type": "function",
+        "z": "72cebb9d0897dcf1",
+        "name": "Store State",
+        "func": "flow.set(\"central_heating_state\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "dce8207f9eb8ce97"
+            ]
+        ]
+    },
+    {
+        "id": "dce8207f9eb8ce97",
         "type": "debug",
-        "z": "a8d6b57cd3d5d459",
-        "name": "debug 1",
+        "z": "72cebb9d0897dcf1",
+        "name": "Store State",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "245f6cec4e848b2f",
+        "type": "function",
+        "z": "72cebb9d0897dcf1",
+        "name": "Current power",
+        "func": "var state = flow.get(\"central_heating_state\")\n\nif(state === \"ON\"){\n    msg.payload = 2000\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 400,
+        "wires": [
+            [
+                "e63c3c6ca2e693ad",
+                "d35609aa74faefdb"
+            ]
+        ]
+    },
+    {
+        "id": "d35609aa74faefdb",
+        "type": "debug",
+        "z": "72cebb9d0897dcf1",
+        "name": "Power consumption",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -121,18 +336,294 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
-        "y": 120,
+        "x": 830,
+        "y": 480,
         "wires": []
     },
     {
-        "id": "3dbf22fe6d4575f6",
-        "type": "comment",
-        "z": "a8d6b57cd3d5d459",
-        "name": "This is our initial flow :))",
-        "info": "",
-        "x": 480,
+        "id": "9815e584faed6711",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn On",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "c6a56f26d3b546f0",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn Off",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 560,
+        "y": 240,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "5d9aec737a1b9033",
+        "type": "mqtt out",
+        "z": "b1c73a27875ad110",
+        "name": "Lights",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 810,
         "y": 220,
         "wires": []
+    },
+    {
+        "id": "d9dbd858fca0c943",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn On every evening",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 18 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "69f38ae1d125942f",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn Off every evening",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "dc7af0b0168f278d",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn On morning",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "483a75b0b8fd1178",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn Off morning",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 08 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 610,
+        "y": 520,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "60862e227fc77af6",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn On",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "88aa28753fb950ca",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn Off",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 560,
+        "y": 300,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "42414eb03510af10",
+        "type": "mqtt out",
+        "z": "27f595115c5b78b0",
+        "name": "Central Heating",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 840,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bd410b3f702bc03e",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn On day",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 540,
+        "y": 400,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "b367410c6054c4e5",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn Off day",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 560,
+        "y": 440,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
     }
 ]
