@@ -1,0 +1,25 @@
+{
+  "name": "iot-virtual-home",
+  "version": "1.0.0",
+  "description": "IoT Virtual Home - Alina+Martin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-red"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mabartos/iot-virtual-home.git"
+  },
+  "author": "Alina + Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mabartos/iot-virtual-home/issues"
+  },
+  "homepage": "https://github.com/mabartos/iot-virtual-home#readme",
+  "dependencies": {
+    "node-red": "^3.0.2",
+    "node-red-contrib-influxdb": "^0.6.1",
+    "node-red-contrib-sentilo": "^0.5.1"
+  }
+}

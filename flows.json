@@ -32,6 +32,14 @@
         "env": []
     },
     {
+        "id": "ee1061974e02e17c",
+        "type": "tab",
+        "label": "HomePowerController",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "b773633e083bfda2",
         "type": "server",
         "alias": "thingtia_manuel",
@@ -624,6 +632,25 @@
             [
                 "42414eb03510af10"
             ]
+        ]
+    },
+    {
+        "id": "50b83b65e65c5d79",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Central Heating",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            []
         ]
     }
 ]
