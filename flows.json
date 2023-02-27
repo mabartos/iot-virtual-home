@@ -75,6 +75,20 @@
         "sessionExpiry": ""
     },
     {
+        "id": "deacb2722d06694f",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "localhost",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": false
+    },
+    {
         "id": "c7c1f531dc14f272",
         "type": "mqtt in",
         "z": "21cf0363a05e7524",
@@ -91,7 +105,7 @@
         "y": 500,
         "wires": [
             [
-                "d59b13643d6f480e"
+                "d7d481f8efdff413"
             ]
         ]
     },
@@ -109,7 +123,7 @@
         "correl": "",
         "expiry": "",
         "broker": "838e41213a61d9fb",
-        "x": 840,
+        "x": 1080,
         "y": 620,
         "wires": []
     },
@@ -149,7 +163,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 730,
         "y": 500,
         "wires": [
             [
@@ -162,7 +176,7 @@
         "type": "debug",
         "z": "21cf0363a05e7524",
         "name": "Store State",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -170,7 +184,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 780,
+        "x": 940,
         "y": 500,
         "wires": []
     },
@@ -179,7 +193,7 @@
         "type": "function",
         "z": "21cf0363a05e7524",
         "name": "Current power",
-        "func": "var state = flow.get(\"light_state\")\n\nif(state === \"ON\"){\n    msg.payload = 60\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
+        "func": "let state = flow.get(\"light_state\")\n\nif(state && state.value && state.value === \"ON\"){\n    msg.payload = 60\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -189,8 +203,7 @@
         "y": 620,
         "wires": [
             [
-                "856c9635b0125628",
-                "dc9d7620d8b6727b"
+                "8b011742a4aff328"
             ]
         ]
     },
@@ -199,7 +212,7 @@
         "type": "debug",
         "z": "21cf0363a05e7524",
         "name": "Power consumption",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -207,9 +220,48 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
+        "x": 1070,
         "y": 700,
         "wires": []
+    },
+    {
+        "id": "d7d481f8efdff413",
+        "type": "function",
+        "z": "21cf0363a05e7524",
+        "name": "Add timestamp",
+        "func": "msg.payload = {\n    value : msg.payload,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "d59b13643d6f480e"
+            ]
+        ]
+    },
+    {
+        "id": "8b011742a4aff328",
+        "type": "function",
+        "z": "21cf0363a05e7524",
+        "name": "Add timestamp",
+        "func": "msg.payload = {\n    value : msg.payload,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 620,
+        "wires": [
+            [
+                "856c9635b0125628",
+                "dc9d7620d8b6727b"
+            ]
+        ]
     },
     {
         "id": "4dad1370f004240b",
@@ -228,7 +280,7 @@
         "y": 280,
         "wires": [
             [
-                "6f32a49143ef4324"
+                "184162539100a31d"
             ]
         ]
     },
@@ -238,7 +290,7 @@
         "z": "72cebb9d0897dcf1",
         "name": "Current power consumption",
         "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
-        "qos": "",
+        "qos": "2",
         "retain": "",
         "respTopic": "",
         "contentType": "",
@@ -246,7 +298,7 @@
         "correl": "",
         "expiry": "",
         "broker": "838e41213a61d9fb",
-        "x": 860,
+        "x": 1160,
         "y": 400,
         "wires": []
     },
@@ -260,7 +312,7 @@
                 "p": "payload"
             }
         ],
-        "repeat": "60",
+        "repeat": "10",
         "crontab": "",
         "once": true,
         "onceDelay": "0.5",
@@ -286,7 +338,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
+        "x": 850,
         "y": 280,
         "wires": [
             [
@@ -299,7 +351,7 @@
         "type": "debug",
         "z": "72cebb9d0897dcf1",
         "name": "Store State",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -307,7 +359,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 800,
+        "x": 1080,
         "y": 280,
         "wires": []
     },
@@ -316,7 +368,7 @@
         "type": "function",
         "z": "72cebb9d0897dcf1",
         "name": "Current power",
-        "func": "var state = flow.get(\"central_heating_state\")\n\nif(state === \"ON\"){\n    msg.payload = 2000\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
+        "func": "const state = flow.get(\"central_heating_state\")\n\nif(state && state.value && state.value === \"ON\"){\n    msg.payload = 2000\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -326,8 +378,7 @@
         "y": 400,
         "wires": [
             [
-                "e63c3c6ca2e693ad",
-                "d35609aa74faefdb"
+                "2380e9ccce5a7737"
             ]
         ]
     },
@@ -344,9 +395,48 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 830,
+        "x": 1110,
         "y": 480,
         "wires": []
+    },
+    {
+        "id": "184162539100a31d",
+        "type": "function",
+        "z": "72cebb9d0897dcf1",
+        "name": "Add timestamp",
+        "func": "msg.payload = {\n    value : msg.payload,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "6f32a49143ef4324"
+            ]
+        ]
+    },
+    {
+        "id": "2380e9ccce5a7737",
+        "type": "function",
+        "z": "72cebb9d0897dcf1",
+        "name": "Add timestamp",
+        "func": "msg.payload = {\n    value : msg.payload,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 400,
+        "wires": [
+            [
+                "e63c3c6ca2e693ad",
+                "d35609aa74faefdb"
+            ]
+        ]
     },
     {
         "id": "9815e584faed6711",
@@ -638,19 +728,147 @@
         "id": "50b83b65e65c5d79",
         "type": "mqtt in",
         "z": "ee1061974e02e17c",
-        "name": "Central Heating",
-        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "name": "Central Heating Consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
         "qos": "2",
-        "datatype": "utf8",
+        "datatype": "auto-detect",
         "broker": "838e41213a61d9fb",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 380,
+        "x": 260,
         "y": 280,
+        "wires": [
+            [
+                "52a93f8dc4730497",
+                "08c20309e68cb095",
+                "8f4650800627f8dc"
+            ]
+        ]
+    },
+    {
+        "id": "52a93f8dc4730497",
+        "type": "influxdb out",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "heating-consumption",
+        "measurement": "central",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 900,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "08c20309e68cb095",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "InfluxDB",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "37c8d744faa77e9e",
+        "type": "catch",
+        "z": "ee1061974e02e17c",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "4f2bf206ad27c158"
+            ]
+        ]
+    },
+    {
+        "id": "4f2bf206ad27c158",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "Catch All",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1efe746bd7235f29",
+        "type": "change",
+        "z": "ee1061974e02e17c",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.consumption",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields.tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 360,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "8f4650800627f8dc",
+        "type": "influxdb out",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "another",
+        "measurement": "another",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 880,
+        "y": 360,
+        "wires": []
     }
 ]
