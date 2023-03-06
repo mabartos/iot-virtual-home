@@ -137,7 +137,7 @@
                 "p": "payload"
             }
         ],
-        "repeat": "60",
+        "repeat": "1",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -387,7 +387,7 @@
         "type": "debug",
         "z": "72cebb9d0897dcf1",
         "name": "Power consumption",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -741,9 +741,7 @@
         "y": 280,
         "wires": [
             [
-                "52a93f8dc4730497",
-                "08c20309e68cb095",
-                "8f4650800627f8dc"
+                "1efe746bd7235f29"
             ]
         ]
     },
@@ -753,7 +751,7 @@
         "z": "ee1061974e02e17c",
         "influxdb": "deacb2722d06694f",
         "name": "heating-consumption",
-        "measurement": "central",
+        "measurement": "heating-consumption",
         "precision": "",
         "retentionPolicy": "",
         "database": "database",
@@ -770,7 +768,7 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "InfluxDB",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": true,
@@ -779,7 +777,7 @@
         "statusVal": "payload",
         "statusType": "auto",
         "x": 870,
-        "y": 200,
+        "y": 340,
         "wires": []
     },
     {
@@ -825,20 +823,22 @@
                 "p": "fields.consumption",
                 "pt": "msg",
                 "to": "payload.value",
-                "tot": "msg"
+                "tot": "msg",
+                "dc": true
             },
             {
                 "t": "set",
                 "p": "tags.timestamp",
                 "pt": "msg",
                 "to": "payload.time",
-                "tot": "msg"
+                "tot": "msg",
+                "dc": true
             },
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "$append(fields.tags)",
+                "to": "$append(fields,tags)",
                 "tot": "jsonata"
             }
         ],
@@ -847,19 +847,87 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 470,
-        "y": 360,
+        "x": 570,
+        "y": 280,
         "wires": [
-            []
+            [
+                "52a93f8dc4730497",
+                "08c20309e68cb095"
+            ]
         ]
     },
     {
-        "id": "8f4650800627f8dc",
+        "id": "1867ab5d3723faec",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Lights Living Room Consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "35e6758f4ff1f183"
+            ]
+        ]
+    },
+    {
+        "id": "35e6758f4ff1f183",
+        "type": "change",
+        "z": "ee1061974e02e17c",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.consumption",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields,tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "5aa374f636ee58c5",
+                "08c20309e68cb095"
+            ]
+        ]
+    },
+    {
+        "id": "5aa374f636ee58c5",
         "type": "influxdb out",
         "z": "ee1061974e02e17c",
         "influxdb": "deacb2722d06694f",
-        "name": "another",
-        "measurement": "another",
+        "name": "heating-consumption",
+        "measurement": "lights-living-room-consumption",
         "precision": "",
         "retentionPolicy": "",
         "database": "database",
@@ -867,8 +935,8 @@
         "retentionPolicyV18Flux": "",
         "org": "alinaMartin",
         "bucket": "home1",
-        "x": 880,
-        "y": 360,
+        "x": 900,
+        "y": 400,
         "wires": []
     }
 ]
