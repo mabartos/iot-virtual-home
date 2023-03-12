@@ -299,7 +299,7 @@
                 "p": "payload"
             }
         ],
-        "repeat": "1",
+        "repeat": "10",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -513,7 +513,7 @@
         "type": "debug",
         "z": "72cebb9d0897dcf1",
         "name": "Store State",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -911,7 +911,6 @@
         "id": "52a93f8dc4730497",
         "type": "influxdb out",
         "z": "ee1061974e02e17c",
-        "d": true,
         "influxdb": "deacb2722d06694f",
         "name": "heating-consumption",
         "measurement": "heating-consumption",
@@ -931,15 +930,15 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "InfluxDB",
-        "active": false,
+        "active": true,
         "tosidebar": true,
-        "console": true,
-        "tostatus": true,
+        "console": false,
+        "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "statusVal": "payload",
+        "statusVal": "",
         "statusType": "auto",
-        "x": 870,
+        "x": 860,
         "y": 340,
         "wires": []
     },
@@ -1014,7 +1013,8 @@
         "y": 280,
         "wires": [
             [
-                "08c20309e68cb095"
+                "08c20309e68cb095",
+                "52a93f8dc4730497"
             ]
         ]
     },
@@ -1078,7 +1078,8 @@
         "y": 400,
         "wires": [
             [
-                "08c20309e68cb095"
+                "08c20309e68cb095",
+                "5aa374f636ee58c5"
             ]
         ]
     },
@@ -1086,9 +1087,8 @@
         "id": "5aa374f636ee58c5",
         "type": "influxdb out",
         "z": "ee1061974e02e17c",
-        "d": true,
         "influxdb": "deacb2722d06694f",
-        "name": "heating-consumption",
+        "name": "lights-living-room-consumption",
         "measurement": "lights-living-room-consumption",
         "precision": "",
         "retentionPolicy": "",
@@ -1097,8 +1097,63 @@
         "retentionPolicyV18Flux": "",
         "org": "alinaMartin",
         "bucket": "home1",
-        "x": 900,
+        "x": 930,
         "y": 400,
         "wires": []
+    },
+    {
+        "id": "f08fe952c2adf8b7",
+        "type": "influxdb in",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "localhost",
+        "query": "from(bucket: \"home1\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"heating-consumption\")\n  |> mean(column: \"_value\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "alinaMartin",
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "b7f6c8c4ca787607"
+            ]
+        ]
+    },
+    {
+        "id": "b7f6c8c4ca787607",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "InfluxDB Heating consumption",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 560,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "93ee30e04cf8b5bc",
+        "type": "inject",
+        "z": "ee1061974e02e17c",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "f08fe952c2adf8b7"
+            ]
+        ]
     }
 ]
