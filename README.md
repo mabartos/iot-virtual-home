@@ -12,10 +12,15 @@ File `flows.json` contains all exported Node-RED flows.
 
 ### How to run
 1. Run MQTT Broker (configuration is for localhost:1883) - you can run `mosquitto`
-2. Run InfluxDB (next section)
+2. Run InfluxDB (section `InfluxDB`)
 2. Fetch all dependencies - `npm install`
 3. Start Node-Red - `npm start`
 4. Navigate to `localhost:1880`
+
+### Available URLs
+Node-Red - `localhost:1880`
+Node-Red UI Dashboard - `localhost:1880/ui`
+InfluxDB - `localhost:8086`
 
 #### InfluxDB
 

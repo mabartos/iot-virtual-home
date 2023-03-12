@@ -2,7 +2,7 @@
     {
         "id": "847fbaaad8613590",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Weather API",
         "disabled": false,
         "info": "",
         "env": []
@@ -10,7 +10,7 @@
     {
         "id": "21cf0363a05e7524",
         "type": "tab",
-        "label": "Lights Living Room",
+        "label": "Living Room",
         "disabled": false,
         "info": "",
         "env": []
@@ -26,7 +26,7 @@
     {
         "id": "b1c73a27875ad110",
         "type": "tab",
-        "label": "Lights Living Room Simulator",
+        "label": "Living Room Simulator",
         "disabled": false,
         "info": "",
         "env": []
@@ -43,6 +43,14 @@
         "id": "ee1061974e02e17c",
         "type": "tab",
         "label": "HomePowerController",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "60d0f118e94c9f05",
+        "type": "tab",
+        "label": "Dashboard",
         "disabled": false,
         "info": "",
         "env": []
@@ -95,6 +103,133 @@
         "influxdbVersion": "2.0",
         "url": "http://localhost:8086",
         "rejectUnauthorized": false
+    },
+    {
+        "id": "7392875e7b7a6f5c",
+        "type": "ui_group",
+        "name": "Living Room",
+        "tab": "af3d10dc3353bbb3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "af3d10dc3353bbb3",
+        "type": "ui_tab",
+        "name": "Alina's and Martin's Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "aa24dfd70a61630c",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "8ea87fcca76b085c",
+        "type": "ui_group",
+        "name": "General",
+        "tab": "af3d10dc3353bbb3",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "782fe47e8f0822db",
@@ -338,7 +473,7 @@
         "type": "debug",
         "z": "21cf0363a05e7524",
         "name": "Store State",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -1155,5 +1290,221 @@
                 "f08fe952c2adf8b7"
             ]
         ]
+    },
+    {
+        "id": "0b735ca738056ab2",
+        "type": "ui_switch",
+        "z": "60d0f118e94c9f05",
+        "name": "",
+        "label": "Central Lights",
+        "tooltip": "",
+        "group": "7392875e7b7a6f5c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "payload",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "5ee7c947ecbe9646"
+            ]
+        ]
+    },
+    {
+        "id": "3e5e01ec0f22ed3b",
+        "type": "debug",
+        "z": "60d0f118e94c9f05",
+        "name": "Switch Central Lights",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5ee7c947ecbe9646",
+        "type": "change",
+        "z": "60d0f118e94c9f05",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "ON",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "3e5e01ec0f22ed3b",
+                "d1e74a4a84fa5a77"
+            ]
+        ]
+    },
+    {
+        "id": "d1e74a4a84fa5a77",
+        "type": "mqtt out",
+        "z": "60d0f118e94c9f05",
+        "name": "Lights",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 910,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "96d801aebd1eeb05",
+        "type": "ui_switch",
+        "z": "60d0f118e94c9f05",
+        "name": "",
+        "label": "Central Heating",
+        "tooltip": "",
+        "group": "8ea87fcca76b085c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 420,
+        "y": 320,
+        "wires": [
+            [
+                "8f24254d37f1eb8e"
+            ]
+        ]
+    },
+    {
+        "id": "8f24254d37f1eb8e",
+        "type": "change",
+        "z": "60d0f118e94c9f05",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "ON",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 320,
+        "wires": [
+            [
+                "72e345b60e5cac86",
+                "3e598dc638b2b542"
+            ]
+        ]
+    },
+    {
+        "id": "72e345b60e5cac86",
+        "type": "mqtt out",
+        "z": "60d0f118e94c9f05",
+        "name": "Central Heating",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 940,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3e598dc638b2b542",
+        "type": "debug",
+        "z": "60d0f118e94c9f05",
+        "name": "Switch Central Heating",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 400,
+        "wires": []
     }
 ]

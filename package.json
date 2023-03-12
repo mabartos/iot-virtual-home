@@ -20,6 +20,7 @@
   "dependencies": {
     "node-red": "^3.0.2",
     "node-red-contrib-influxdb": "^0.6.1",
-    "node-red-contrib-sentilo": "^0.5.1"
+    "node-red-contrib-sentilo": "^0.5.1",
+    "node-red-dashboard": "^3.4.0"
   }
 }
