@@ -302,7 +302,7 @@
         "type": "debug",
         "z": "847fbaaad8613590",
         "name": "debug 4",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -355,7 +355,7 @@
         "type": "debug",
         "z": "847fbaaad8613590",
         "name": "debug 5",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -420,8 +420,8 @@
         "correl": "",
         "expiry": "",
         "broker": "838e41213a61d9fb",
-        "x": 1080,
-        "y": 620,
+        "x": 1460,
+        "y": 660,
         "wires": []
     },
     {
@@ -441,11 +441,11 @@
         "topic": "",
         "payload": "none",
         "payloadType": "str",
-        "x": 320,
-        "y": 620,
+        "x": 220,
+        "y": 760,
         "wires": [
             [
-                "005c105de994e187"
+                "060cacb2122ebf35"
             ]
         ]
     },
@@ -464,7 +464,8 @@
         "y": 500,
         "wires": [
             [
-                "43ed618d0cfc7188"
+                "43ed618d0cfc7188",
+                "8a3a2ed871884abc"
             ]
         ]
     },
@@ -473,7 +474,7 @@
         "type": "debug",
         "z": "21cf0363a05e7524",
         "name": "Store State",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -490,14 +491,14 @@
         "type": "function",
         "z": "21cf0363a05e7524",
         "name": "Current power",
-        "func": "let state = flow.get(\"light_state\")\n\nif(state && state.value && state.value === \"ON\"){\n    msg.payload = 60\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
+        "func": "const state = msg.state\n\nif (state && state === \"ON\") {\n    msg.payload = 60\n} else {\n    msg.payload = 0\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 620,
+        "x": 920,
+        "y": 740,
         "wires": [
             [
                 "8b011742a4aff328"
@@ -509,7 +510,7 @@
         "type": "debug",
         "z": "21cf0363a05e7524",
         "name": "Power consumption",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -517,8 +518,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1070,
-        "y": 700,
+        "x": 1450,
+        "y": 740,
         "wires": []
     },
     {
@@ -551,12 +552,177 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 620,
+        "x": 1160,
+        "y": 740,
         "wires": [
             [
                 "856c9635b0125628",
                 "dc9d7620d8b6727b"
+            ]
+        ]
+    },
+    {
+        "id": "8a3a2ed871884abc",
+        "type": "change",
+        "z": "21cf0363a05e7524",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.state",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields,tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 950,
+        "y": 420,
+        "wires": [
+            [
+                "0a7a15f6f983ab61",
+                "a593afded30e5982"
+            ]
+        ]
+    },
+    {
+        "id": "0a7a15f6f983ab61",
+        "type": "influxdb out",
+        "z": "21cf0363a05e7524",
+        "influxdb": "deacb2722d06694f",
+        "name": "lights-living-room-consumption",
+        "measurement": "lights-living-room-state",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 1270,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a593afded30e5982",
+        "type": "debug",
+        "z": "21cf0363a05e7524",
+        "name": "Save state to InfluxDB",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fb1065dd04ebbc27",
+        "type": "switch",
+        "z": "21cf0363a05e7524",
+        "name": "Get State",
+        "property": "state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 600,
+        "y": 760,
+        "wires": [
+            [
+                "005c105de994e187"
+            ],
+            [
+                "7ed33fff7bc8fff2"
+            ]
+        ]
+    },
+    {
+        "id": "060cacb2122ebf35",
+        "type": "function",
+        "z": "21cf0363a05e7524",
+        "name": "Get Flow State",
+        "func": "const state = flow.get(\"light_state\")\n\nif(state !== undefined && state !== null){\n    msg.state=state.value;\n} else {\n    msg.state=null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 760,
+        "wires": [
+            [
+                "fb1065dd04ebbc27"
+            ]
+        ]
+    },
+    {
+        "id": "7ed33fff7bc8fff2",
+        "type": "influxdb in",
+        "z": "21cf0363a05e7524",
+        "influxdb": "deacb2722d06694f",
+        "name": "Get State Influx",
+        "query": "from(bucket: \"home1\")\n  |> range(start: 0)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"heating-state\")\n  |> filter(fn: (r) => r[\"_field\"] == \"state\")\n  |> group(columns: [\"*\"])\n  |> sort(columns: [\"timestamp\"], desc: true)\n  |> limit(n: 1)",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "alinaMartin",
+        "x": 700,
+        "y": 940,
+        "wires": [
+            [
+                "61a42c7d75a09134"
+            ]
+        ]
+    },
+    {
+        "id": "61a42c7d75a09134",
+        "type": "function",
+        "z": "21cf0363a05e7524",
+        "name": "Convert from InfluxDB",
+        "func": "const item=msg.payload[0];\n\nif(!!item){\n    msg.state=item[\"_value\"];\n    msg.payload={}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 940,
+        "wires": [
+            [
+                "005c105de994e187"
             ]
         ]
     },
@@ -595,8 +761,8 @@
         "correl": "",
         "expiry": "",
         "broker": "838e41213a61d9fb",
-        "x": 1160,
-        "y": 400,
+        "x": 1460,
+        "y": 480,
         "wires": []
     },
     {
@@ -616,11 +782,11 @@
         "topic": "",
         "payload": "none",
         "payloadType": "str",
-        "x": 340,
-        "y": 400,
+        "x": 120,
+        "y": 480,
         "wires": [
             [
-                "245f6cec4e848b2f"
+                "9303d4aa5125f567"
             ]
         ]
     },
@@ -648,7 +814,7 @@
         "type": "debug",
         "z": "72cebb9d0897dcf1",
         "name": "Store State",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
@@ -665,14 +831,14 @@
         "type": "function",
         "z": "72cebb9d0897dcf1",
         "name": "Current power",
-        "func": "const state = flow.get(\"central_heating_state\")\n\nif(state && state.value && state.value === \"ON\"){\n    msg.payload = 2000\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
+        "func": "const state = msg.state\n\nif(state && state === \"ON\"){\n    msg.payload = 2000\n} else{\n    msg.payload = 0\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 400,
+        "x": 1000,
+        "y": 480,
         "wires": [
             [
                 "2380e9ccce5a7737"
@@ -684,7 +850,7 @@
         "type": "debug",
         "z": "72cebb9d0897dcf1",
         "name": "Power consumption",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -692,8 +858,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1110,
-        "y": 480,
+        "x": 1430,
+        "y": 400,
         "wires": []
     },
     {
@@ -711,7 +877,8 @@
         "y": 280,
         "wires": [
             [
-                "6f32a49143ef4324"
+                "6f32a49143ef4324",
+                "8ae7ffbe9ee29fa3"
             ]
         ]
     },
@@ -726,12 +893,177 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 820,
-        "y": 400,
+        "x": 1220,
+        "y": 480,
         "wires": [
             [
                 "e63c3c6ca2e693ad",
                 "d35609aa74faefdb"
+            ]
+        ]
+    },
+    {
+        "id": "8ae7ffbe9ee29fa3",
+        "type": "change",
+        "z": "72cebb9d0897dcf1",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.state",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields,tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 180,
+        "wires": [
+            [
+                "ba779bc8e2efe19c",
+                "040f255b82a445db"
+            ]
+        ]
+    },
+    {
+        "id": "ba779bc8e2efe19c",
+        "type": "influxdb out",
+        "z": "72cebb9d0897dcf1",
+        "influxdb": "deacb2722d06694f",
+        "name": "heating-state",
+        "measurement": "heating-state",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 1150,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "040f255b82a445db",
+        "type": "debug",
+        "z": "72cebb9d0897dcf1",
+        "name": "Save state to InfluxDB",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "538a4d9fc81716fb",
+        "type": "influxdb in",
+        "z": "72cebb9d0897dcf1",
+        "influxdb": "deacb2722d06694f",
+        "name": "Get State Influx",
+        "query": "from(bucket: \"home1\")\n  |> range(start: 0)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"heating-state\")\n  |> filter(fn: (r) => r[\"_field\"] == \"state\")\n  |> group(columns: [\"*\"])\n  |> sort(columns: [\"timestamp\"], desc: true)\n  |> limit(n: 1)",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "alinaMartin",
+        "x": 580,
+        "y": 600,
+        "wires": [
+            [
+                "431de270d3477e8b"
+            ]
+        ]
+    },
+    {
+        "id": "fbf9ffe61a8f5cfa",
+        "type": "switch",
+        "z": "72cebb9d0897dcf1",
+        "name": "Get State",
+        "property": "state",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 480,
+        "y": 480,
+        "wires": [
+            [
+                "245f6cec4e848b2f"
+            ],
+            [
+                "538a4d9fc81716fb"
+            ]
+        ]
+    },
+    {
+        "id": "9303d4aa5125f567",
+        "type": "function",
+        "z": "72cebb9d0897dcf1",
+        "name": "Get Flow State",
+        "func": "const state = flow.get(\"central_heating_state\")\n\nif(state !== undefined && state !== null){\n    msg.state=state.value;\n} else {\n    msg.state=null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "fbf9ffe61a8f5cfa"
+            ]
+        ]
+    },
+    {
+        "id": "431de270d3477e8b",
+        "type": "function",
+        "z": "72cebb9d0897dcf1",
+        "name": "Convert from InfluxDB",
+        "func": "const item=msg.payload[0];\n\nif(!!item){\n    msg.state=item[\"_value\"];\n    msg.payload={}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 600,
+        "wires": [
+            [
+                "245f6cec4e848b2f"
             ]
         ]
     },
@@ -1065,7 +1397,7 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "InfluxDB",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1260,7 +1592,7 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "InfluxDB Heating consumption",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": true,
@@ -1330,7 +1662,7 @@
         "type": "debug",
         "z": "60d0f118e94c9f05",
         "name": "Switch Central Lights",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1495,7 +1827,7 @@
         "type": "debug",
         "z": "60d0f118e94c9f05",
         "name": "Switch Central Heating",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
