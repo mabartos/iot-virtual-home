@@ -2,9 +2,9 @@
     {
         "id": "847fbaaad8613590",
         "type": "tab",
-        "label": "Weather API",
+        "label": "Call Weather API",
         "disabled": false,
-        "info": "",
+        "info": "Calls the weather api at https://open-meteo.com/ \r\nand returns the current temperature.",
         "env": []
     },
     {
@@ -74,23 +74,6 @@
         ]
     },
     {
-        "id": "ef1d76105f957be2",
-        "type": "debug",
-        "z": "847fbaaad8613590",
-        "name": "debug 4",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 60,
-        "wires": []
-    },
-    {
         "id": "26ce7c0ec4c4e16f",
         "type": "json",
         "z": "847fbaaad8613590",
@@ -98,11 +81,10 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 410,
+        "x": 390,
         "y": 60,
         "wires": [
             [
-                "ef1d76105f957be2",
                 "3d8a7ed7dedfb9f3"
             ]
         ]
@@ -118,8 +100,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 120,
+        "x": 520,
+        "y": 60,
         "wires": [
             [
                 "d69f7dc8247449ea"
@@ -131,15 +113,15 @@
         "type": "debug",
         "z": "847fbaaad8613590",
         "name": "debug 5",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 180,
+        "x": 340,
+        "y": 120,
         "wires": []
     },
     {
@@ -153,12 +135,58 @@
         "syntax": "mustache",
         "template": "The current temperature is: {{payload.temperature}} !",
         "output": "str",
-        "x": 540,
-        "y": 180,
+        "x": 180,
+        "y": 120,
         "wires": [
             [
-                "839b6e60d015e05d"
+                "839b6e60d015e05d",
+                "e11004201b907a7c"
             ]
         ]
+    },
+    {
+        "id": "e11004201b907a7c",
+        "type": "mqtt out",
+        "z": "847fbaaad8613590",
+        "name": "Output Weather",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 360,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     }
 ]
