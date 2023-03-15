@@ -1,0 +1,321 @@
+[
+    {
+        "id": "ee1061974e02e17c",
+        "type": "tab",
+        "label": "HomePowerController",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "50b83b65e65c5d79",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Central Heating Consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "1efe746bd7235f29"
+            ]
+        ]
+    },
+    {
+        "id": "52a93f8dc4730497",
+        "type": "influxdb out",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "heating-consumption",
+        "measurement": "heating-consumption",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 900,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "08c20309e68cb095",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "InfluxDB",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "37c8d744faa77e9e",
+        "type": "catch",
+        "z": "ee1061974e02e17c",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "4f2bf206ad27c158"
+            ]
+        ]
+    },
+    {
+        "id": "4f2bf206ad27c158",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "Catch All",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 510,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "1efe746bd7235f29",
+        "type": "change",
+        "z": "ee1061974e02e17c",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.consumption",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields,tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 280,
+        "wires": [
+            [
+                "08c20309e68cb095",
+                "52a93f8dc4730497"
+            ]
+        ]
+    },
+    {
+        "id": "1867ab5d3723faec",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Lights Living Room Consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "35e6758f4ff1f183"
+            ]
+        ]
+    },
+    {
+        "id": "35e6758f4ff1f183",
+        "type": "change",
+        "z": "ee1061974e02e17c",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.consumption",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields,tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "08c20309e68cb095",
+                "5aa374f636ee58c5"
+            ]
+        ]
+    },
+    {
+        "id": "5aa374f636ee58c5",
+        "type": "influxdb out",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "lights-living-room-consumption",
+        "measurement": "lights-living-room-consumption",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 930,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f08fe952c2adf8b7",
+        "type": "influxdb in",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "localhost",
+        "query": "from(bucket: \"home1\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"heating-consumption\")\n  |> mean(column: \"_value\")\n  |> last()",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "alinaMartin",
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "b7f6c8c4ca787607"
+            ]
+        ]
+    },
+    {
+        "id": "b7f6c8c4ca787607",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "InfluxDB Heating consumption",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 560,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "93ee30e04cf8b5bc",
+        "type": "inject",
+        "z": "ee1061974e02e17c",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "f08fe952c2adf8b7"
+            ]
+        ]
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "deacb2722d06694f",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "localhost",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": false
+    }
+]

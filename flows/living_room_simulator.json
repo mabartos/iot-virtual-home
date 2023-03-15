@@ -1,0 +1,205 @@
+[
+    {
+        "id": "b1c73a27875ad110",
+        "type": "tab",
+        "label": "Living Room Simulator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9815e584faed6711",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn On",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "c6a56f26d3b546f0",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn Off",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 560,
+        "y": 240,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "5d9aec737a1b9033",
+        "type": "mqtt out",
+        "z": "b1c73a27875ad110",
+        "name": "Lights",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 810,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d9dbd858fca0c943",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn On every evening",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 18 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "69f38ae1d125942f",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn Off every evening",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "dc7af0b0168f278d",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn On morning",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "483a75b0b8fd1178",
+        "type": "inject",
+        "z": "b1c73a27875ad110",
+        "name": "Turn Off morning",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 08 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 610,
+        "y": 520,
+        "wires": [
+            [
+                "5d9aec737a1b9033"
+            ]
+        ]
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

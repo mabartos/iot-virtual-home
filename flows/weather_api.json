@@ -1,0 +1,164 @@
+[
+    {
+        "id": "847fbaaad8613590",
+        "type": "tab",
+        "label": "Weather API",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "782fe47e8f0822db",
+        "type": "inject",
+        "z": "847fbaaad8613590",
+        "name": "Make request",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 60,
+        "wires": [
+            [
+                "3ab361b8668cf290"
+            ]
+        ]
+    },
+    {
+        "id": "3ab361b8668cf290",
+        "type": "http request",
+        "z": "847fbaaad8613590",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=39.57&longitude=2.65&current_weather=true&timezone=Europe%2FBerlin",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": ""
+            },
+            {
+                "keyType": "other",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": ""
+            }
+        ],
+        "x": 250,
+        "y": 60,
+        "wires": [
+            [
+                "26ce7c0ec4c4e16f"
+            ]
+        ]
+    },
+    {
+        "id": "ef1d76105f957be2",
+        "type": "debug",
+        "z": "847fbaaad8613590",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "26ce7c0ec4c4e16f",
+        "type": "json",
+        "z": "847fbaaad8613590",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 60,
+        "wires": [
+            [
+                "ef1d76105f957be2",
+                "3d8a7ed7dedfb9f3"
+            ]
+        ]
+    },
+    {
+        "id": "3d8a7ed7dedfb9f3",
+        "type": "function",
+        "z": "847fbaaad8613590",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.current_weather;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 120,
+        "wires": [
+            [
+                "d69f7dc8247449ea"
+            ]
+        ]
+    },
+    {
+        "id": "839b6e60d015e05d",
+        "type": "debug",
+        "z": "847fbaaad8613590",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d69f7dc8247449ea",
+        "type": "template",
+        "z": "847fbaaad8613590",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "The current temperature is: {{payload.temperature}} !",
+        "output": "str",
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "839b6e60d015e05d"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,155 @@
+[
+    {
+        "id": "27f595115c5b78b0",
+        "type": "tab",
+        "label": "Central Heating Simulator",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "60862e227fc77af6",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn On",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "88aa28753fb950ca",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn Off",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 560,
+        "y": 300,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "42414eb03510af10",
+        "type": "mqtt out",
+        "z": "27f595115c5b78b0",
+        "name": "Central Heating",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 840,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bd410b3f702bc03e",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn On day",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ON",
+        "payloadType": "str",
+        "x": 540,
+        "y": 400,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "b367410c6054c4e5",
+        "type": "inject",
+        "z": "27f595115c5b78b0",
+        "name": "Turn Off day",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "OFF",
+        "payloadType": "str",
+        "x": 560,
+        "y": 440,
+        "wires": [
+            [
+                "42414eb03510af10"
+            ]
+        ]
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
