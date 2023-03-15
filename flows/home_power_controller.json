@@ -71,7 +71,7 @@
         "scope": null,
         "uncaught": false,
         "x": 240,
-        "y": 560,
+        "y": 780,
         "wires": [
             [
                 "4f2bf206ad27c158"
@@ -92,7 +92,7 @@
         "statusVal": "payload",
         "statusType": "auto",
         "x": 510,
-        "y": 560,
+        "y": 780,
         "wires": []
     },
     {
@@ -223,57 +223,101 @@
         "wires": []
     },
     {
-        "id": "f08fe952c2adf8b7",
-        "type": "influxdb in",
+        "id": "2e6acfe40b7f1a4f",
+        "type": "function",
         "z": "ee1061974e02e17c",
-        "influxdb": "deacb2722d06694f",
-        "name": "localhost",
-        "query": "from(bucket: \"home1\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"heating-consumption\")\n  |> mean(column: \"_value\")\n  |> last()",
-        "rawOutput": false,
-        "precision": "",
-        "retentionPolicy": "",
-        "org": "alinaMartin",
-        "x": 280,
-        "y": 500,
+        "name": "Get Average of temperatures",
+        "func": "const storedTemp = flow.get(\"stored_temperature\");\n\nif (storedTemp === undefined || storedTemp === null){\n    flow.set(\"stored_temperature\", msg.payload);\n    msg.payload.distribute=false;\n}else{\n    const currentTemp = msg.payload.value;\n    const average = (storedTemp.value + currentTemp) / 2;\n    msg.payload={}\n    msg.payload.avgTemperature = average;\n    flow.set(\"stored_temperature\", null);\n    msg.payload.distribute = true;\n}\n\nconsole.debug(msg)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 580,
         "wires": [
             [
-                "b7f6c8c4ca787607"
+                "4275503af45d0389"
             ]
         ]
     },
     {
-        "id": "b7f6c8c4ca787607",
+        "id": "28b71e80aba30ef7",
         "type": "debug",
         "z": "ee1061974e02e17c",
-        "name": "InfluxDB Heating consumption",
-        "active": false,
+        "name": "Average Temperature",
+        "active": true,
         "tosidebar": true,
-        "console": true,
-        "tostatus": true,
+        "console": false,
+        "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "statusVal": "payload",
+        "statusVal": "",
         "statusType": "auto",
-        "x": 560,
-        "y": 500,
+        "x": 1220,
+        "y": 680,
         "wires": []
     },
     {
-        "id": "93ee30e04cf8b5bc",
-        "type": "inject",
+        "id": "736a3e25608f6c50",
+        "type": "mqtt out",
         "z": "ee1061974e02e17c",
-        "name": "",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 130,
-        "y": 500,
+        "name": "Average temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/average-temperature",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 1220,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4c4606e8c3559c80",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Current temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 580,
         "wires": [
             [
-                "f08fe952c2adf8b7"
+                "2e6acfe40b7f1a4f"
+            ]
+        ]
+    },
+    {
+        "id": "4275503af45d0389",
+        "type": "switch",
+        "z": "ee1061974e02e17c",
+        "name": "Should send average?",
+        "property": "payload.distribute",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 940,
+        "y": 580,
+        "wires": [
+            [
+                "736a3e25608f6c50",
+                "28b71e80aba30ef7"
             ]
         ]
     },

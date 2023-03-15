@@ -1,6 +1,6 @@
 [
     {
-        "id": "21cf0363a05e7524",
+        "id": "bfc35229e11153c5",
         "type": "tab",
         "label": "Living Room",
         "disabled": false,
@@ -8,9 +8,9 @@
         "env": []
     },
     {
-        "id": "c7c1f531dc14f272",
+        "id": "53e5c85fceaa8688",
         "type": "mqtt in",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Lights topic",
         "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
         "qos": "2",
@@ -24,14 +24,14 @@
         "y": 500,
         "wires": [
             [
-                "d7d481f8efdff413"
+                "466c24463e04d80d"
             ]
         ]
     },
     {
-        "id": "856c9635b0125628",
+        "id": "84df49c91b784167",
         "type": "mqtt out",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Current power consumption",
         "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
         "qos": "",
@@ -47,16 +47,16 @@
         "wires": []
     },
     {
-        "id": "b874f26558e58f0b",
+        "id": "472320d95962dfef",
         "type": "inject",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Initiator",
         "props": [
             {
                 "p": "payload"
             }
         ],
-        "repeat": "10",
+        "repeat": "60",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -67,14 +67,14 @@
         "y": 760,
         "wires": [
             [
-                "060cacb2122ebf35"
+                "80fe3f7dcd2a53cb"
             ]
         ]
     },
     {
-        "id": "d59b13643d6f480e",
+        "id": "c40f06c30a6db4ec",
         "type": "function",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Store State",
         "func": "flow.set(\"light_state\", msg.payload)\nreturn msg;",
         "outputs": 1,
@@ -86,15 +86,15 @@
         "y": 500,
         "wires": [
             [
-                "43ed618d0cfc7188",
-                "8a3a2ed871884abc"
+                "3ec32ae32627ad8b",
+                "a51f22aa14cc6993"
             ]
         ]
     },
     {
-        "id": "43ed618d0cfc7188",
+        "id": "3ec32ae32627ad8b",
         "type": "debug",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Store State",
         "active": false,
         "tosidebar": true,
@@ -109,9 +109,9 @@
         "wires": []
     },
     {
-        "id": "005c105de994e187",
+        "id": "ba2b84eb4fbf9bc9",
         "type": "function",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Current power",
         "func": "const state = msg.state\n\nif (state && state === \"ON\") {\n    msg.payload = 60\n} else {\n    msg.payload = 0\n}\n\nreturn msg;",
         "outputs": 1,
@@ -123,14 +123,14 @@
         "y": 740,
         "wires": [
             [
-                "8b011742a4aff328"
+                "bff056838495423b"
             ]
         ]
     },
     {
-        "id": "dc9d7620d8b6727b",
+        "id": "b2c3adc4241acb41",
         "type": "debug",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Power consumption",
         "active": true,
         "tosidebar": true,
@@ -145,9 +145,9 @@
         "wires": []
     },
     {
-        "id": "d7d481f8efdff413",
+        "id": "466c24463e04d80d",
         "type": "function",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Add timestamp",
         "func": "msg.payload = {\n    value : msg.payload,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
         "outputs": 1,
@@ -159,14 +159,14 @@
         "y": 500,
         "wires": [
             [
-                "d59b13643d6f480e"
+                "c40f06c30a6db4ec"
             ]
         ]
     },
     {
-        "id": "8b011742a4aff328",
+        "id": "bff056838495423b",
         "type": "function",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Add timestamp",
         "func": "msg.payload = {\n    value : msg.payload,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
         "outputs": 1,
@@ -178,15 +178,15 @@
         "y": 740,
         "wires": [
             [
-                "856c9635b0125628",
-                "dc9d7620d8b6727b"
+                "84df49c91b784167",
+                "b2c3adc4241acb41"
             ]
         ]
     },
     {
-        "id": "8a3a2ed871884abc",
+        "id": "a51f22aa14cc6993",
         "type": "change",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Format for InfluxDB",
         "rules": [
             {
@@ -222,15 +222,15 @@
         "y": 420,
         "wires": [
             [
-                "0a7a15f6f983ab61",
-                "a593afded30e5982"
+                "ae6dd2eb253dff07",
+                "3662257bdc111d19"
             ]
         ]
     },
     {
-        "id": "0a7a15f6f983ab61",
+        "id": "ae6dd2eb253dff07",
         "type": "influxdb out",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "influxdb": "deacb2722d06694f",
         "name": "lights-living-room-consumption",
         "measurement": "lights-living-room-state",
@@ -246,9 +246,9 @@
         "wires": []
     },
     {
-        "id": "a593afded30e5982",
+        "id": "3662257bdc111d19",
         "type": "debug",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Save state to InfluxDB",
         "active": false,
         "tosidebar": true,
@@ -263,9 +263,9 @@
         "wires": []
     },
     {
-        "id": "fb1065dd04ebbc27",
+        "id": "ad7c55ba941cad94",
         "type": "switch",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Get State",
         "property": "state",
         "propertyType": "msg",
@@ -284,17 +284,17 @@
         "y": 760,
         "wires": [
             [
-                "005c105de994e187"
+                "ba2b84eb4fbf9bc9"
             ],
             [
-                "7ed33fff7bc8fff2"
+                "4ef1255176261a15"
             ]
         ]
     },
     {
-        "id": "060cacb2122ebf35",
+        "id": "80fe3f7dcd2a53cb",
         "type": "function",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Get Flow State",
         "func": "const state = flow.get(\"light_state\")\n\nif(state !== undefined && state !== null){\n    msg.state=state.value;\n} else {\n    msg.state=null;\n}\nreturn msg;",
         "outputs": 1,
@@ -306,14 +306,14 @@
         "y": 760,
         "wires": [
             [
-                "fb1065dd04ebbc27"
+                "ad7c55ba941cad94"
             ]
         ]
     },
     {
-        "id": "7ed33fff7bc8fff2",
+        "id": "4ef1255176261a15",
         "type": "influxdb in",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "influxdb": "deacb2722d06694f",
         "name": "Get State Influx",
         "query": "from(bucket: \"home1\")\n  |> range(start: 0)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"heating-state\")\n  |> filter(fn: (r) => r[\"_field\"] == \"state\")\n  |> group(columns: [\"*\"])\n  |> sort(columns: [\"timestamp\"], desc: true)\n  |> limit(n: 1)",
@@ -325,14 +325,14 @@
         "y": 940,
         "wires": [
             [
-                "61a42c7d75a09134"
+                "537971934ccce401"
             ]
         ]
     },
     {
-        "id": "61a42c7d75a09134",
+        "id": "537971934ccce401",
         "type": "function",
-        "z": "21cf0363a05e7524",
+        "z": "bfc35229e11153c5",
         "name": "Convert from InfluxDB",
         "func": "const item=msg.payload[0];\n\nif(!!item){\n    msg.state=item[\"_value\"];\n    msg.payload={}\n}\nreturn msg;",
         "outputs": 1,
@@ -344,7 +344,7 @@
         "y": 940,
         "wires": [
             [
-                "005c105de994e187"
+                "ba2b84eb4fbf9bc9"
             ]
         ]
     },

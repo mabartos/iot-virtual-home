@@ -224,6 +224,142 @@
         "wires": []
     },
     {
+        "id": "20cefe50b1dab0ce",
+        "type": "ui_gauge",
+        "z": "60d0f118e94c9f05",
+        "name": "",
+        "group": "8ea87fcca76b085c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Average temperature",
+        "label": "˚C",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "50",
+        "colors": [
+            "#00bfff",
+            "#00ff33",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 880,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "ee73cb313d38347a",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "name": "Average temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/average-temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "8ecc6c99e3a68069"
+            ]
+        ]
+    },
+    {
+        "id": "8ecc6c99e3a68069",
+        "type": "template",
+        "z": "60d0f118e94c9f05",
+        "name": "Get temp",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.avgTemperature}}",
+        "output": "str",
+        "x": 640,
+        "y": 540,
+        "wires": [
+            [
+                "20cefe50b1dab0ce"
+            ]
+        ]
+    },
+    {
+        "id": "2475776356e64ab0",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "name": "Current temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 390,
+        "y": 640,
+        "wires": [
+            [
+                "2ad77a571454da45"
+            ]
+        ]
+    },
+    {
+        "id": "2ad77a571454da45",
+        "type": "template",
+        "z": "60d0f118e94c9f05",
+        "name": "Get temp",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.value}}",
+        "output": "str",
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "9688c8e8988d3e61"
+            ]
+        ]
+    },
+    {
+        "id": "9688c8e8988d3e61",
+        "type": "ui_gauge",
+        "z": "60d0f118e94c9f05",
+        "name": "",
+        "group": "8ea87fcca76b085c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Current temperature",
+        "label": "˚C",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "50",
+        "colors": [
+            "#00bfff",
+            "#00ff33",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 880,
+        "y": 640,
+        "wires": []
+    },
+    {
         "id": "7392875e7b7a6f5c",
         "type": "ui_group",
         "name": "Living Room",

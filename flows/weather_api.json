@@ -21,15 +21,15 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "3600",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
-        "y": 60,
+        "x": 500,
+        "y": 180,
         "wires": [
             [
                 "3ab361b8668cf290"
@@ -65,8 +65,8 @@
                 "valueValue": ""
             }
         ],
-        "x": 250,
-        "y": 60,
+        "x": 750,
+        "y": 180,
         "wires": [
             [
                 "26ce7c0ec4c4e16f"
@@ -81,8 +81,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 390,
-        "y": 60,
+        "x": 890,
+        "y": 180,
         "wires": [
             [
                 "3d8a7ed7dedfb9f3"
@@ -100,11 +100,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 60,
+        "x": 1020,
+        "y": 180,
         "wires": [
             [
-                "d69f7dc8247449ea"
+                "d69f7dc8247449ea",
+                "8666e998273d42f2"
             ]
         ]
     },
@@ -112,16 +113,17 @@
         "id": "839b6e60d015e05d",
         "type": "debug",
         "z": "847fbaaad8613590",
-        "name": "debug 5",
-        "active": true,
+        "name": "Output weather",
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 340,
-        "y": 120,
+        "x": 920,
+        "y": 240,
         "wires": []
     },
     {
@@ -135,12 +137,11 @@
         "syntax": "mustache",
         "template": "The current temperature is: {{payload.temperature}} !",
         "output": "str",
-        "x": 180,
-        "y": 120,
+        "x": 680,
+        "y": 240,
         "wires": [
             [
-                "839b6e60d015e05d",
-                "e11004201b907a7c"
+                "839b6e60d015e05d"
             ]
         ]
     },
@@ -158,8 +159,107 @@
         "correl": "",
         "expiry": "",
         "broker": "838e41213a61d9fb",
-        "x": 360,
+        "x": 1500,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "36256a2fe74d2999",
+        "type": "influxdb out",
+        "z": "847fbaaad8613590",
+        "influxdb": "deacb2722d06694f",
+        "name": "External temperature",
+        "measurement": "external-temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "alinaMartin",
+        "bucket": "home1",
+        "x": 1760,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8666e998273d42f2",
+        "type": "function",
+        "z": "847fbaaad8613590",
+        "name": "Add timestamp",
+        "func": "msg.payload = {\n    value : msg.payload.temperature,\n    time : (new Date()).toISOString()\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 180,
+        "wires": [
+            [
+                "5faaf1b78c36fb7b",
+                "e11004201b907a7c"
+            ]
+        ]
+    },
+    {
+        "id": "5faaf1b78c36fb7b",
+        "type": "change",
+        "z": "847fbaaad8613590",
+        "name": "Format for InfluxDB",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fields.value",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "tags.timestamp",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$append(fields,tags)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1510,
+        "y": 180,
+        "wires": [
+            [
+                "36256a2fe74d2999",
+                "f77c9a676e8a8e83"
+            ]
+        ]
+    },
+    {
+        "id": "f77c9a676e8a8e83",
+        "type": "debug",
+        "z": "847fbaaad8613590",
+        "name": "Influx weather",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1760,
+        "y": 260,
         "wires": []
     },
     {
@@ -188,5 +288,19 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "deacb2722d06694f",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "localhost",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": false
     }
 ]
