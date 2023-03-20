@@ -10,6 +10,10 @@ Subject: 11769 - Connectivitat i Integració de Sistemes a IoT
 Each flow has its own file in the `flows/` directory.
 In flow `general.json`, there are global configurations for MQTT Broker, InfluxDB, Dashboard - if you create some general configuration shared in different flows, just add it here.
 
+### Dashboard
+Current dashboard with possibility to turn ON/OFF appliance, see current and average temperature and moreover, Average power consumption of appliances for the whole house.
+<img width="617" src="img/dashboard.png" alt="Dashboard"/>
+
 ### How to run
 1. Run MQTT Broker (configuration is for localhost:1883) - you can run `mosquitto`
 2. Run InfluxDB (section `InfluxDB`)

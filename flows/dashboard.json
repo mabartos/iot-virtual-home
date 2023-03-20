@@ -360,6 +360,44 @@
         "wires": []
     },
     {
+        "id": "23310f27d42c0dec",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "name": "Average power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/average-power-consumption",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 420,
+        "y": 740,
+        "wires": [
+            [
+                "dbcb8bcd2de69232"
+            ]
+        ]
+    },
+    {
+        "id": "dbcb8bcd2de69232",
+        "type": "ui_text",
+        "z": "60d0f118e94c9f05",
+        "group": "8ea87fcca76b085c",
+        "order": 1,
+        "width": "6",
+        "height": "4",
+        "name": "Average power consumption",
+        "label": "Average power consumption",
+        "format": "{{msg.payload}} W",
+        "layout": "col-center",
+        "className": "",
+        "x": 800,
+        "y": 740,
+        "wires": []
+    },
+    {
         "id": "7392875e7b7a6f5c",
         "type": "ui_group",
         "name": "Living Room",

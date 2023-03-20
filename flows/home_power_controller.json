@@ -70,8 +70,8 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 240,
-        "y": 780,
+        "x": 1240,
+        "y": 320,
         "wires": [
             [
                 "4f2bf206ad27c158"
@@ -83,16 +83,16 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "Catch All",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": true,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "payload",
         "statusType": "auto",
-        "x": 510,
-        "y": 780,
+        "x": 1510,
+        "y": 320,
         "wires": []
     },
     {
@@ -320,6 +320,264 @@
                 "28b71e80aba30ef7"
             ]
         ]
+    },
+    {
+        "id": "a3f7dc8729c38c7a",
+        "type": "influxdb in",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "Get average consumption Heating",
+        "query": "from(bucket: \"home1\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"heating-consumption\")\n  |> filter(fn: (r) => r[\"_field\"] == \"consumption\")\n  |> group(columns: [\"_measurement\"], mode:\"by\")  \n  |> aggregateWindow(every: 1h, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")\n  |> limit(n:1)",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "alinaMartin",
+        "x": 480,
+        "y": 780,
+        "wires": [
+            [
+                "a02e2934adcc8097"
+            ]
+        ]
+    },
+    {
+        "id": "e897e16e7df2274f",
+        "type": "inject",
+        "z": "ee1061974e02e17c",
+        "name": "Every hour",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "x": 190,
+        "y": 840,
+        "wires": [
+            [
+                "a3f7dc8729c38c7a",
+                "705baed0cfc283dd"
+            ]
+        ]
+    },
+    {
+        "id": "a02e2934adcc8097",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Get heating power consumption AVG",
+        "func": "if(msg.payload!==undefined){\n    const value=msg.payload[0]._value;\n    msg.payload=value;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 780,
+        "wires": [
+            [
+                "969535b1e9037058"
+            ]
+        ]
+    },
+    {
+        "id": "969535b1e9037058",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Transform to heating msg",
+        "func": "if(msg.payload!==undefined){\n    msg.topic=\"heating\";\n    return msg;\n}\nreturn {};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 780,
+        "wires": [
+            [
+                "3e4529c7fe91a710",
+                "86c4cdb3dbabb831"
+            ]
+        ]
+    },
+    {
+        "id": "705baed0cfc283dd",
+        "type": "influxdb in",
+        "z": "ee1061974e02e17c",
+        "influxdb": "deacb2722d06694f",
+        "name": "Get average consumption Lights",
+        "query": "from(bucket: \"home1\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"lights-living-room-consumption\")\n  |> filter(fn: (r) => r[\"_field\"] == \"consumption\")\n  |> group(columns: [\"_measurement\"], mode:\"by\")  \n  |> aggregateWindow(every: 1h, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")\n  |> limit(n:1)",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "alinaMartin",
+        "x": 450,
+        "y": 920,
+        "wires": [
+            [
+                "9f3c94d0c384aee4"
+            ]
+        ]
+    },
+    {
+        "id": "9f3c94d0c384aee4",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Get lights power consumption AVG",
+        "func": "if(msg.payload!==undefined){\n    const value=msg.payload[0]._value;\n    msg.payload=value;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 920,
+        "wires": [
+            [
+                "9178bdcf24d0d06d"
+            ]
+        ]
+    },
+    {
+        "id": "9178bdcf24d0d06d",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Transform to lights msg",
+        "func": "if(msg.payload!==undefined){\n    msg.topic = \"lights\";\n    return msg;\n}\nreturn {};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 920,
+        "wires": [
+            [
+                "e6750b387267ae65",
+                "86c4cdb3dbabb831"
+            ]
+        ]
+    },
+    {
+        "id": "3e4529c7fe91a710",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Store Heating Average consumption",
+        "func": "if(msg.payload!==undefined){\n    flow.set(\"central_heating_average\", msg.payload)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6750b387267ae65",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Store Lights Average consumption",
+        "func": "if(msg.payload!==undefined){\n    flow.set(\"central_lights_average\", msg.payload)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86c4cdb3dbabb831",
+        "type": "join",
+        "z": "ee1061974e02e17c",
+        "name": "Join messages",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "10",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1300,
+        "y": 840,
+        "wires": [
+            [
+                "c282dcbeee0c2479"
+            ]
+        ]
+    },
+    {
+        "id": "7606c52f722c6275",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "Average power consumption",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1720,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "c282dcbeee0c2479",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "SUM",
+        "func": "if(msg.payload!==undefined){\n    let sum=0;\n    sum+=msg.payload.heating;\n    sum+=msg.payload.lights;\n    \n    msg.topic=\"average\";\n    msg.payload=sum/2;\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 840,
+        "wires": [
+            [
+                "7606c52f722c6275",
+                "9f32fe250403c599"
+            ]
+        ]
+    },
+    {
+        "id": "9f32fe250403c599",
+        "type": "mqtt out",
+        "z": "ee1061974e02e17c",
+        "name": "Average power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/average-power-consumption",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 1720,
+        "y": 840,
+        "wires": []
     },
     {
         "id": "838e41213a61d9fb",
