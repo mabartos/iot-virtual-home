@@ -370,7 +370,7 @@
         "type": "function",
         "z": "ee1061974e02e17c",
         "name": "Get heating power consumption AVG",
-        "func": "if(msg.payload!==undefined){\n    const value=msg.payload[0]._value;\n    msg.payload=value;\n}\nreturn msg;",
+        "func": "if(msg.payload!==undefined){\n    const value=msg.payload[1]._value;\n    msg.payload=value;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -428,7 +428,7 @@
         "type": "function",
         "z": "ee1061974e02e17c",
         "name": "Get lights power consumption AVG",
-        "func": "if(msg.payload!==undefined){\n    const value=msg.payload[0]._value;\n    msg.payload=value;\n}\nreturn msg;",
+        "func": "if(msg.payload!==undefined){\n    const value=msg.payload[1]._value;\n    msg.payload=value;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -577,6 +577,84 @@
         "broker": "838e41213a61d9fb",
         "x": 1720,
         "y": 840,
+        "wires": []
+    },
+    {
+        "id": "dd60dd9cf4599dd0",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Central Heating requests",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/request",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "59522716cfeb2ecf"
+            ]
+        ]
+    },
+    {
+        "id": "59522716cfeb2ecf",
+        "type": "mqtt out",
+        "z": "ee1061974e02e17c",
+        "name": "Central Heating actuator",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 590,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "47d3cb18f7cd0bc2",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Lights Living Room requests",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/request",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "a3729446aa071499"
+            ]
+        ]
+    },
+    {
+        "id": "a3729446aa071499",
+        "type": "mqtt out",
+        "z": "ee1061974e02e17c",
+        "name": "Lights Living Room actuator",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 600,
+        "y": 180,
         "wires": []
     },
     {

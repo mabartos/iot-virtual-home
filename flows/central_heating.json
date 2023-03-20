@@ -95,7 +95,7 @@
         "type": "debug",
         "z": "72cebb9d0897dcf1",
         "name": "Store State",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
