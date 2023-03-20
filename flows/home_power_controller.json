@@ -83,7 +83,7 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "Catch All",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": true,
         "tostatus": true,
@@ -246,7 +246,7 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "Average Temperature",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -272,7 +272,7 @@
         "correl": "",
         "expiry": "",
         "broker": "838e41213a61d9fb",
-        "x": 1220,
+        "x": 1240,
         "y": 580,
         "wires": []
     },
@@ -529,7 +529,7 @@
         "type": "debug",
         "z": "ee1061974e02e17c",
         "name": "Average power consumption",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -655,6 +655,169 @@
         "broker": "838e41213a61d9fb",
         "x": 600,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f63df1802bb62927",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Current Heating consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1080,
+        "wires": [
+            [
+                "f8c60bf490b8c185"
+            ]
+        ]
+    },
+    {
+        "id": "fab381955c1e5491",
+        "type": "mqtt in",
+        "z": "ee1061974e02e17c",
+        "name": "Current light consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 1140,
+        "wires": [
+            [
+                "14316415ecb5f219"
+            ]
+        ]
+    },
+    {
+        "id": "f8c60bf490b8c185",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Set Heating",
+        "func": "if(msg.payload!==undefined){\n    const payload=msg.payload.value;\n    msg.topic=\"heating\";\n    msg.payload=payload;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 1080,
+        "wires": [
+            [
+                "8aa3444ec8313d9b"
+            ]
+        ]
+    },
+    {
+        "id": "14316415ecb5f219",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "Set lights",
+        "func": "if (msg.payload !== undefined) {\n    const payload = msg.payload.value;\n    msg.topic = \"lights\";\n    msg.payload = payload;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 1140,
+        "wires": [
+            [
+                "8aa3444ec8313d9b"
+            ]
+        ]
+    },
+    {
+        "id": "8aa3444ec8313d9b",
+        "type": "join",
+        "z": "ee1061974e02e17c",
+        "name": "Join messages",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "0",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 780,
+        "y": 1100,
+        "wires": [
+            [
+                "6677d6a15317e115"
+            ]
+        ]
+    },
+    {
+        "id": "94eecfe587f00a08",
+        "type": "debug",
+        "z": "ee1061974e02e17c",
+        "name": "Current power consumption debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "6677d6a15317e115",
+        "type": "function",
+        "z": "ee1061974e02e17c",
+        "name": "SUM",
+        "func": "if(msg.payload!==undefined){\n    let sum=0;\n    \n    if(msg.payload.heating!==undefined){\n        sum += msg.payload.heating;\n    }\n\n    if (msg.payload.lights !== undefined) {\n        sum += msg.payload.lights;\n    }\n    \n    msg.topic=\"current\";\n    msg.payload=sum;\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 1100,
+        "wires": [
+            [
+                "94eecfe587f00a08",
+                "c84843759c9eac98"
+            ]
+        ]
+    },
+    {
+        "id": "c84843759c9eac98",
+        "type": "mqtt out",
+        "z": "ee1061974e02e17c",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/energy/current",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 1180,
+        "y": 1100,
         "wires": []
     },
     {
