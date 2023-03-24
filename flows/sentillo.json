@@ -1,0 +1,268 @@
+[
+    {
+        "id": "542eca21513ea239",
+        "type": "tab",
+        "label": "Publish to Sentilo",
+        "disabled": false,
+        "info": "This node publishes the current power consumption to sentilo.",
+        "env": []
+    },
+    {
+        "id": "59964421a3301591",
+        "type": "group",
+        "z": "542eca21513ea239",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "e5f9b87992b96827",
+            "536d02ea6eaa4f8a",
+            "7f15d3b8c7c281b6",
+            "2e7070d3dcbecbe0",
+            "b7d7bc683fd350be",
+            "6d01709cfc9141a5",
+            "0ec08b711b11b7f4",
+            "c60d75c08f17e863",
+            "5b7d848a488fb286"
+        ],
+        "x": 14,
+        "y": 79,
+        "w": 1012,
+        "h": 222
+    },
+    {
+        "id": "e5f9b87992b96827",
+        "type": "mqtt in",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/energy/current",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "0ec08b711b11b7f4"
+            ]
+        ]
+    },
+    {
+        "id": "536d02ea6eaa4f8a",
+        "type": "debug",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Polished data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "7f15d3b8c7c281b6",
+        "type": "publish",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Publish temperature",
+        "server": "b773633e083bfda2",
+        "providerId": "manuelbarranco@MUSI-IoT",
+        "dataType": "data",
+        "identifier": "casaPalma_temperaturaMedia",
+        "obsValue": "",
+        "urlRaw": "/data/manuelbarranco@MUSI-IoT/casaPalma_temperaturaMedia",
+        "x": 860,
+        "y": 120,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2e7070d3dcbecbe0",
+        "type": "delay",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "7f15d3b8c7c281b6"
+            ]
+        ]
+    },
+    {
+        "id": "b7d7bc683fd350be",
+        "type": "mqtt in",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Current temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/temperature",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "6d01709cfc9141a5"
+            ]
+        ]
+    },
+    {
+        "id": "6d01709cfc9141a5",
+        "type": "function",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Polish data",
+        "func": "function timestampToLong(timestamp){\n    var date= new Date(timestamp);\n    return date.getTime();\n}\n\nif(msg.payload !== undefined){\n    let payload={}\n    payload.value = msg.payload.value\n    payload.time = timestampToLong(msg.payload.time);\n\n    msg.payload={}\n    msg.payload.observations = [];\n    msg.payload.observations[0] = payload;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "536d02ea6eaa4f8a",
+                "2e7070d3dcbecbe0"
+            ]
+        ]
+    },
+    {
+        "id": "0ec08b711b11b7f4",
+        "type": "function",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Polish data",
+        "func": "if (msg.payload !== undefined) {\n    let payload = {}\n    payload.value = msg.payload\n    payload.time = new Date().getTime()\n\n    msg.payload = {}\n    msg.payload.observations = [];\n    msg.payload.observations[0] = payload;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "5b7d848a488fb286",
+                "536d02ea6eaa4f8a"
+            ]
+        ]
+    },
+    {
+        "id": "c60d75c08f17e863",
+        "type": "publish",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "Publish power consumption",
+        "server": "b773633e083bfda2",
+        "providerId": "manuelbarranco@MUSI-IoT",
+        "dataType": "data",
+        "identifier": "casaPalma_consumoMedio",
+        "obsValue": "",
+        "urlRaw": "/data/manuelbarranco@MUSI-IoT/casaPalma_consumoMedio",
+        "x": 880,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5b7d848a488fb286",
+        "type": "delay",
+        "z": "542eca21513ea239",
+        "g": "59964421a3301591",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 260,
+        "wires": [
+            [
+                "c60d75c08f17e863"
+            ]
+        ]
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b773633e083bfda2",
+        "type": "server",
+        "alias": "thingtia_manuel",
+        "host": "api.thingtia.cloud",
+        "acceptUntrusted": true,
+        "apiKey": "c41d567da415001308a8be58b94a4814b108de76947f3577a2a533c396badc0e"
+    }
+]
