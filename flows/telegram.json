@@ -14,9 +14,65 @@
         ]
     },
     {
+        "id": "7d96e1127ae10206",
+        "type": "group",
+        "z": "1f9f90c6366b8eba",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "0fd67672b9425588",
+            "936deac2c40ff734",
+            "242de0ba895eae22"
+        ],
+        "x": 94,
+        "y": 339,
+        "w": 452,
+        "h": 142
+    },
+    {
+        "id": "dc7d6e79a414c7b3",
+        "type": "group",
+        "z": "1f9f90c6366b8eba",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1583ec5000455945",
+            "5efac2aa15c3032d",
+            "4b1cdf01a7dc75f6",
+            "937cbd57a8038f8a",
+            "8e4b344c5974357e",
+            "3dfd6e521c9cce79",
+            "088a1bab1ebb28c2",
+            "4b99e7f62fb928c6",
+            "fc346844a2f290db",
+            "0b86d36e0387606e",
+            "5f2150601cf98425",
+            "5ca20daf2150852e"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 1292,
+        "h": 262
+    },
+    {
         "id": "1583ec5000455945",
         "type": "mqtt in",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "Current power consumption Telegram",
         "topic": "MUSI-IoT-2022/AlinaMartin/general/energy/current",
         "qos": "2",
@@ -26,8 +82,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 150,
-        "y": 100,
+        "x": 210,
+        "y": 140,
         "wires": [
             [
                 "4b1cdf01a7dc75f6"
@@ -38,12 +94,13 @@
         "id": "5efac2aa15c3032d",
         "type": "telegram sender",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "IoTBot",
         "bot": "532baf459f75e4b6",
         "haserroroutput": true,
         "outputs": 2,
-        "x": 1190,
-        "y": 100,
+        "x": 1250,
+        "y": 140,
         "wires": [
             [],
             []
@@ -53,15 +110,16 @@
         "id": "4b1cdf01a7dc75f6",
         "type": "function",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "Set threshold",
-        "func": "const current_consumption = msg.payload;\n\nmsg.payload = {}\nmsg.payload.value = current_consumption;\nmsg.payload.power_state = flow.get('power_state');\nmsg.payload.content = 'The current power consumption is ' + current_consumption;\nmsg.payload.chatId = -844585211;\nmsg.payload.threshold = 1500;\nmsg.payload.type = \"message\";\nreturn msg;",
+        "func": "const current_consumption = msg.payload;\n\nmsg.payload = {}\nmsg.payload.value = current_consumption;\nmsg.payload.power_state = flow.get('power_state');\nmsg.payload.content = 'The current power consumption is ' + current_consumption;\nmsg.payload.chatId = -844585211;\nmsg.payload.threshold = flow.get(\"threshold\");\nmsg.payload.type = \"message\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set('power_state', 0);\n",
         "finalize": "",
         "libs": [],
-        "x": 390,
-        "y": 100,
+        "x": 450,
+        "y": 140,
         "wires": [
             [
                 "937cbd57a8038f8a",
@@ -73,6 +131,7 @@
         "id": "937cbd57a8038f8a",
         "type": "debug",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "Telegram message",
         "active": false,
         "tosidebar": true,
@@ -82,14 +141,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 40,
+        "x": 610,
+        "y": 80,
         "wires": []
     },
     {
         "id": "8e4b344c5974357e",
         "type": "switch",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "Check consumption",
         "property": "payload.value",
         "propertyType": "msg",
@@ -103,8 +163,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 790,
-        "y": 100,
+        "x": 850,
+        "y": 140,
         "wires": [
             [
                 "088a1bab1ebb28c2"
@@ -115,6 +175,7 @@
         "id": "3dfd6e521c9cce79",
         "type": "switch",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "Check consumption",
         "property": "payload.value",
         "propertyType": "msg",
@@ -128,8 +189,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 790,
-        "y": 160,
+        "x": 850,
+        "y": 200,
         "wires": [
             [
                 "4b99e7f62fb928c6",
@@ -141,6 +202,7 @@
         "id": "088a1bab1ebb28c2",
         "type": "function",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "set power_state 1",
         "func": "flow.set('power_state', 1);\nreturn msg;",
         "outputs": 1,
@@ -148,8 +210,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 100,
+        "x": 1050,
+        "y": 140,
         "wires": [
             [
                 "5efac2aa15c3032d",
@@ -161,6 +223,7 @@
         "id": "4b99e7f62fb928c6",
         "type": "function",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "set power state 0",
         "func": "flow.set('power_state', 0);\nreturn msg;",
         "outputs": 1,
@@ -168,8 +231,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 160,
+        "x": 1050,
+        "y": 200,
         "wires": [
             []
         ]
@@ -178,6 +241,7 @@
         "id": "fc346844a2f290db",
         "type": "switch",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "Check power_state",
         "property": "payload.power_state",
         "propertyType": "msg",
@@ -196,8 +260,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 590,
-        "y": 100,
+        "x": 650,
+        "y": 140,
         "wires": [
             [
                 "8e4b344c5974357e",
@@ -212,6 +276,7 @@
         "id": "0b86d36e0387606e",
         "type": "debug",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "debug 8",
         "active": false,
         "tosidebar": true,
@@ -221,14 +286,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 780,
-        "y": 40,
+        "x": 840,
+        "y": 80,
         "wires": []
     },
     {
         "id": "5f2150601cf98425",
         "type": "debug",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "debug 9",
         "active": false,
         "tosidebar": true,
@@ -238,14 +304,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
-        "y": 40,
+        "x": 1220,
+        "y": 80,
         "wires": []
     },
     {
         "id": "5ca20daf2150852e",
         "type": "debug",
         "z": "1f9f90c6366b8eba",
+        "g": "dc7d6e79a414c7b3",
         "name": "debug 10",
         "active": false,
         "tosidebar": true,
@@ -255,8 +322,67 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 980,
-        "y": 220,
+        "x": 1040,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0fd67672b9425588",
+        "type": "mqtt in",
+        "z": "1f9f90c6366b8eba",
+        "g": "7d96e1127ae10206",
+        "name": "Threshold",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/set-alarm-treshold",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "936deac2c40ff734",
+                "242de0ba895eae22"
+            ]
+        ]
+    },
+    {
+        "id": "936deac2c40ff734",
+        "type": "function",
+        "z": "1f9f90c6366b8eba",
+        "g": "7d96e1127ae10206",
+        "name": "Store threshold",
+        "func": "if(msg.payload!==undefined){\n    flow.set(\"threshold\", msg.payload);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"threshold\", 1500);",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "242de0ba895eae22",
+        "type": "debug",
+        "z": "1f9f90c6366b8eba",
+        "g": "7d96e1127ae10206",
+        "name": "Stored alarm threshold",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 440,
         "wires": []
     },
     {

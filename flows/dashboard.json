@@ -180,6 +180,28 @@
         "h": 82
     },
     {
+        "id": "8f5e622e66d7901b",
+        "type": "group",
+        "z": "60d0f118e94c9f05",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "86f5d09970b73d6c",
+            "af9a9384f0816a49"
+        ],
+        "x": 314,
+        "y": 1079,
+        "w": 592,
+        "h": 82
+    },
+    {
         "id": "0b735ca738056ab2",
         "type": "ui_switch",
         "z": "60d0f118e94c9f05",
@@ -844,7 +866,7 @@
         "topic": "topic",
         "topicType": "msg",
         "min": 0,
-        "max": "10000",
+        "max": "5000",
         "step": "100",
         "className": "",
         "x": 400,
@@ -967,6 +989,53 @@
                 "7499ab0d7fb9867c"
             ]
         ]
+    },
+    {
+        "id": "86f5d09970b73d6c",
+        "type": "ui_slider",
+        "z": "60d0f118e94c9f05",
+        "g": "8f5e622e66d7901b",
+        "name": "",
+        "label": "Alarm Threshold",
+        "tooltip": "When the current power consumption is higher, turn off some appliances",
+        "group": "8ea87fcca76b085c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "5000",
+        "step": "100",
+        "className": "",
+        "x": 420,
+        "y": 1120,
+        "wires": [
+            [
+                "af9a9384f0816a49"
+            ]
+        ]
+    },
+    {
+        "id": "af9a9384f0816a49",
+        "type": "mqtt out",
+        "z": "60d0f118e94c9f05",
+        "g": "8f5e622e66d7901b",
+        "name": "Set alarm threshold",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/set-alarm-treshold",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 790,
+        "y": 1120,
+        "wires": []
     },
     {
         "id": "7392875e7b7a6f5c",
