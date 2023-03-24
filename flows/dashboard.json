@@ -202,6 +202,54 @@
         "h": 82
     },
     {
+        "id": "21ef1d784919344b",
+        "type": "group",
+        "z": "60d0f118e94c9f05",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "871191a17b3bb802",
+            "96a57da582e2b23b",
+            "0c0c011ce1a902ce",
+            "1b5666d67133af4f"
+        ],
+        "x": 334,
+        "y": 1199,
+        "w": 1112,
+        "h": 82
+    },
+    {
+        "id": "d484680e94e9fa47",
+        "type": "group",
+        "z": "60d0f118e94c9f05",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "8ba7e11848791f6f",
+            "6464cd2344600787",
+            "f61582f852e8f35a",
+            "820495af5a22e818"
+        ],
+        "x": 334,
+        "y": 1299,
+        "w": 1112,
+        "h": 82
+    },
+    {
         "id": "0b735ca738056ab2",
         "type": "ui_switch",
         "z": "60d0f118e94c9f05",
@@ -1035,6 +1083,166 @@
         "broker": "838e41213a61d9fb",
         "x": 790,
         "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "871191a17b3bb802",
+        "type": "ui_text",
+        "z": "60d0f118e94c9f05",
+        "g": "21ef1d784919344b",
+        "group": "42649cdce1041605",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "State",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 750,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "96a57da582e2b23b",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "g": "21ef1d784919344b",
+        "name": "Central Heating state",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 460,
+        "y": 1240,
+        "wires": [
+            [
+                "871191a17b3bb802"
+            ]
+        ]
+    },
+    {
+        "id": "8ba7e11848791f6f",
+        "type": "ui_text",
+        "z": "60d0f118e94c9f05",
+        "g": "d484680e94e9fa47",
+        "group": "7392875e7b7a6f5c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "State",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 750,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "6464cd2344600787",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "g": "d484680e94e9fa47",
+        "name": "Lights state",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 1340,
+        "wires": [
+            [
+                "8ba7e11848791f6f"
+            ]
+        ]
+    },
+    {
+        "id": "0c0c011ce1a902ce",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "g": "21ef1d784919344b",
+        "name": "Current Heating consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1000,
+        "y": 1240,
+        "wires": [
+            [
+                "1b5666d67133af4f"
+            ]
+        ]
+    },
+    {
+        "id": "1b5666d67133af4f",
+        "type": "ui_text",
+        "z": "60d0f118e94c9f05",
+        "g": "21ef1d784919344b",
+        "group": "42649cdce1041605",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current consumption",
+        "format": "{{msg.payload.value}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1320,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "f61582f852e8f35a",
+        "type": "mqtt in",
+        "z": "60d0f118e94c9f05",
+        "g": "d484680e94e9fa47",
+        "name": "Current light consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 990,
+        "y": 1340,
+        "wires": [
+            [
+                "820495af5a22e818"
+            ]
+        ]
+    },
+    {
+        "id": "820495af5a22e818",
+        "type": "ui_text",
+        "z": "60d0f118e94c9f05",
+        "g": "d484680e94e9fa47",
+        "group": "7392875e7b7a6f5c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current consumption",
+        "format": "{{msg.payload.value}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1320,
+        "y": 1340,
         "wires": []
     },
     {
