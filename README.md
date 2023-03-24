@@ -14,6 +14,9 @@ In flow `general.json`, there are global configurations for MQTT Broker, InfluxD
 Current dashboard with possibility to turn ON/OFF appliance, see current and average temperature and moreover, Average power consumption of appliances for the whole house.
 <img width="617" src="img/dashboard.png" alt="Dashboard"/>
 
+##### Data are periodically sent to the Sentilo platform
+<img src="img/sentilo.jpeg" alt="Diagram"/>
+
 ### How to run
 1. Run MQTT Broker (configuration is for localhost:1883) - you can run `mosquitto`
 2. Run InfluxDB (section `InfluxDB`)
