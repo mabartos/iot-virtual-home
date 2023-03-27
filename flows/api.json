@@ -1,0 +1,275 @@
+[
+    {
+        "id": "693c74ea1a3706dd",
+        "type": "tab",
+        "label": "Expose Total Consumption API",
+        "disabled": false,
+        "info": "",
+        "env": [
+            {
+                "name": "total_consumption",
+                "value": "0",
+                "type": "num"
+            }
+        ]
+    },
+    {
+        "id": "d7061d13b153e43f",
+        "type": "mqtt in",
+        "z": "693c74ea1a3706dd",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/energy/current",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "04192226e124c458",
+                "3bfcf812258cd303"
+            ]
+        ]
+    },
+    {
+        "id": "04192226e124c458",
+        "type": "function",
+        "z": "693c74ea1a3706dd",
+        "name": "compute total consumption",
+        "func": "var current = flow.get('total_consumption');\ncurrent = current + parseInt(msg.payload);\nflow.set('total_consumption', current);\nvar new_counter = flow.get('counter') + 1.0;\nflow.set('counter', new_counter);\nmsg.payload.avg_consumption = current / new_counter;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set('total_consumption', 0.0); \nflow.set('counter', 0.0);\n",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "01dbd84bb06cfe44"
+            ]
+        ]
+    },
+    {
+        "id": "01dbd84bb06cfe44",
+        "type": "debug",
+        "z": "693c74ea1a3706dd",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9a6633e598b9eed8",
+        "type": "change",
+        "z": "693c74ea1a3706dd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "counter",
+                "pt": "flow",
+                "to": "0.0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "total_consumption",
+                "pt": "flow",
+                "to": "0.0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3bfcf812258cd303",
+        "type": "delay",
+        "z": "693c74ea1a3706dd",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "3",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "24",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "9a6633e598b9eed8"
+            ]
+        ]
+    },
+    {
+        "id": "6cdc37ad61dede03",
+        "type": "http in",
+        "z": "693c74ea1a3706dd",
+        "name": "",
+        "url": "api/MUSI-IoT-2022/AlinaMartin/lastConsumption",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "b9bbf98c31f159cb"
+            ]
+        ]
+    },
+    {
+        "id": "c8fca9a9a1b761ee",
+        "type": "http response",
+        "z": "693c74ea1a3706dd",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1d940d6b2b5f5193",
+        "type": "inject",
+        "z": "693c74ea1a3706dd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 300,
+        "wires": [
+            [
+                "3aac74177e08ef6c"
+            ]
+        ]
+    },
+    {
+        "id": "3aac74177e08ef6c",
+        "type": "http request",
+        "z": "693c74ea1a3706dd",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1880/api/MUSI-IoT-2022/AlinaMartin/lastConsumption",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "ce033361895233b0"
+            ]
+        ]
+    },
+    {
+        "id": "ce033361895233b0",
+        "type": "debug",
+        "z": "693c74ea1a3706dd",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b9bbf98c31f159cb",
+        "type": "function",
+        "z": "693c74ea1a3706dd",
+        "name": "pass avg_consumption",
+        "func": "var current = flow.get('total_consumption');\nvar count = flow.get('counter');\nmsg.payload.avg_consumption = current / count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "c8fca9a9a1b761ee"
+            ]
+        ]
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
