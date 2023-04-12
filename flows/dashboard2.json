@@ -1,0 +1,1404 @@
+[
+    {
+        "id": "cfa7ee81d964090b",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e518d9f70552d45b",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b066153e0d98f468",
+            "9f76c35df6252c37",
+            "7a033b202511b080",
+            "4907399d2c1ce6f4",
+            "76ed955bd10b364a",
+            "d7f23a95c25a4c43",
+            "076b50ec24a73bd6",
+            "bdb6f25dc36ce247",
+            "f959a2aa9dc5248a",
+            "8f10df8165aaa1e5"
+        ],
+        "x": 14,
+        "y": 39,
+        "w": 1352,
+        "h": 242
+    },
+    {
+        "id": "35ecf59e65c091af",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1c3718353c57387b",
+            "83c2c94e597a440a",
+            "e51e43cf20e45bf5",
+            "59f3773f8f89c656",
+            "2ef24d5d674f9b20",
+            "4af1941454187978",
+            "4ac9bd4714314626",
+            "111b839e4189939a",
+            "60e90e09d51b1a87",
+            "3544b490d79ade90"
+        ],
+        "x": 14,
+        "y": 299,
+        "w": 1352,
+        "h": 222
+    },
+    {
+        "id": "ef64705e9c2713cb",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "703c233eb05ce135",
+            "ae2bbf89bcba4877",
+            "800e06817f1dc0e1"
+        ],
+        "x": 294,
+        "y": 539,
+        "w": 732,
+        "h": 82
+    },
+    {
+        "id": "edc96414b86b3e48",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "7e7578e5db548595",
+            "cdb772ee994428bc",
+            "70970d3aec14b099"
+        ],
+        "x": 294,
+        "y": 659,
+        "w": 732,
+        "h": 82
+    },
+    {
+        "id": "0f8b06da07f16b71",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "fd268d72b5264319",
+            "9c36f4a0aaaadf54"
+        ],
+        "x": 294,
+        "y": 759,
+        "w": 672,
+        "h": 82
+    },
+    {
+        "id": "a44bb3e3a9662352",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "e6e0082e126525c2",
+            "4c348bea978ab092"
+        ],
+        "x": 294,
+        "y": 859,
+        "w": 672,
+        "h": 82
+    },
+    {
+        "id": "342825fcc1182138",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1cb2e86f5a237ff6",
+            "1bbddf8349971962"
+        ],
+        "x": 314,
+        "y": 959,
+        "w": 552,
+        "h": 82
+    },
+    {
+        "id": "e8b2760cd99f5da3",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "c3727a11607893d5",
+            "bdc6f75f42ebdb63"
+        ],
+        "x": 314,
+        "y": 1079,
+        "w": 592,
+        "h": 82
+    },
+    {
+        "id": "42b1291735bde90b",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "b5cbad2d152cff9c",
+            "c212d56026322359",
+            "735e99123f4f389b",
+            "befefbca18aa808d"
+        ],
+        "x": 334,
+        "y": 1199,
+        "w": 1112,
+        "h": 82
+    },
+    {
+        "id": "f671e77dd3dba9c7",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "08cea5cfa40f839f",
+            "751310617030e001",
+            "32814f4e33d3214a",
+            "375626726db32c45"
+        ],
+        "x": 334,
+        "y": 1299,
+        "w": 1112,
+        "h": 82
+    },
+    {
+        "id": "e91b97c9e87110cd",
+        "type": "group",
+        "z": "cfa7ee81d964090b",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2f7b744081e762ab",
+            "874fde88b381ddf8",
+            "2ae2a763d915356b"
+        ],
+        "x": 334,
+        "y": 1419,
+        "w": 792,
+        "h": 82
+    },
+    {
+        "id": "b066153e0d98f468",
+        "type": "ui_switch",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "",
+        "label": "Central Lights",
+        "tooltip": "",
+        "group": "7392875e7b7a6f5c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "payload",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "7a033b202511b080"
+            ]
+        ]
+    },
+    {
+        "id": "9f76c35df6252c37",
+        "type": "debug",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "Switch Central Lights",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7a033b202511b080",
+        "type": "change",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "ON",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 160,
+        "wires": [
+            [
+                "d7f23a95c25a4c43"
+            ]
+        ]
+    },
+    {
+        "id": "4907399d2c1ce6f4",
+        "type": "mqtt out",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "Lights request",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/request",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 1200,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1c3718353c57387b",
+        "type": "ui_switch",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "",
+        "label": "Central Heating",
+        "tooltip": "",
+        "group": "42842512a8e82966",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "83c2c94e597a440a"
+            ]
+        ]
+    },
+    {
+        "id": "83c2c94e597a440a",
+        "type": "change",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "ON",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 340,
+        "wires": [
+            [
+                "4ac9bd4714314626"
+            ]
+        ]
+    },
+    {
+        "id": "e51e43cf20e45bf5",
+        "type": "mqtt out",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "Central Heating request",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/request",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 1230,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "59f3773f8f89c656",
+        "type": "debug",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "Switch Central Heating",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "703c233eb05ce135",
+        "type": "ui_gauge",
+        "z": "cfa7ee81d964090b",
+        "g": "ef64705e9c2713cb",
+        "name": "",
+        "group": "8ea87fcca76b085c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Average temperature",
+        "label": "˚C",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "50",
+        "colors": [
+            "#00bfff",
+            "#00ff33",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 900,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "ae2bbf89bcba4877",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "ef64705e9c2713cb",
+        "name": "Average temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/average-temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 420,
+        "y": 580,
+        "wires": [
+            [
+                "800e06817f1dc0e1"
+            ]
+        ]
+    },
+    {
+        "id": "800e06817f1dc0e1",
+        "type": "template",
+        "z": "cfa7ee81d964090b",
+        "g": "ef64705e9c2713cb",
+        "name": "Get temp",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.avgTemperature}}",
+        "output": "str",
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "703c233eb05ce135"
+            ]
+        ]
+    },
+    {
+        "id": "7e7578e5db548595",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "edc96414b86b3e48",
+        "name": "Current temperature",
+        "topic": "MUSI-IoT-2022/AlinaMartin/outside/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 410,
+        "y": 700,
+        "wires": [
+            [
+                "cdb772ee994428bc"
+            ]
+        ]
+    },
+    {
+        "id": "cdb772ee994428bc",
+        "type": "template",
+        "z": "cfa7ee81d964090b",
+        "g": "edc96414b86b3e48",
+        "name": "Get temp",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.value}}",
+        "output": "str",
+        "x": 660,
+        "y": 700,
+        "wires": [
+            [
+                "70970d3aec14b099"
+            ]
+        ]
+    },
+    {
+        "id": "70970d3aec14b099",
+        "type": "ui_gauge",
+        "z": "cfa7ee81d964090b",
+        "g": "edc96414b86b3e48",
+        "name": "",
+        "group": "8ea87fcca76b085c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Current temperature",
+        "label": "˚C",
+        "format": "{{value}}",
+        "min": "-30",
+        "max": "50",
+        "colors": [
+            "#00bfff",
+            "#00ff33",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 900,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "fd268d72b5264319",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "0f8b06da07f16b71",
+        "name": "Average power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/average-power-consumption",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 440,
+        "y": 800,
+        "wires": [
+            [
+                "9c36f4a0aaaadf54"
+            ]
+        ]
+    },
+    {
+        "id": "9c36f4a0aaaadf54",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "0f8b06da07f16b71",
+        "group": "8ea87fcca76b085c",
+        "order": 5,
+        "width": "6",
+        "height": "1",
+        "name": "Average power consumption",
+        "label": "Average power consumption",
+        "format": "{{msg.payload}} W",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "76ed955bd10b364a",
+        "type": "ui_switch",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "",
+        "label": "Central Lights - forced ON",
+        "tooltip": "",
+        "group": "7392875e7b7a6f5c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "lights",
+        "topicType": "flow",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 210,
+        "y": 100,
+        "wires": [
+            [
+                "076b50ec24a73bd6"
+            ]
+        ]
+    },
+    {
+        "id": "2ef24d5d674f9b20",
+        "type": "ui_switch",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "",
+        "label": "Central Heating - forced ON",
+        "tooltip": "",
+        "group": "42842512a8e82966",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "forced",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "4af1941454187978"
+            ]
+        ]
+    },
+    {
+        "id": "d7f23a95c25a4c43",
+        "type": "function",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "Create object",
+        "func": "const value = msg.payload;\nconst isForced = flow.get(\"lights_forced\")\nconst priority = flow.get(\"lights_priority\");\n\nconsole.log(\"H\")\nconsole.log(flow.get(\"priority\"))\n\nmsg.payload = {}\nmsg.payload.value=value;\nmsg.payload.forced=isForced;\nmsg.payload.priority=priority;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 160,
+        "wires": [
+            [
+                "4907399d2c1ce6f4",
+                "9f76c35df6252c37"
+            ]
+        ]
+    },
+    {
+        "id": "076b50ec24a73bd6",
+        "type": "function",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "Store forced",
+        "func": "flow.set(\"lights_forced\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "b066153e0d98f468"
+            ]
+        ]
+    },
+    {
+        "id": "4af1941454187978",
+        "type": "function",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "Store forced",
+        "func": "flow.set(\"heating_forced\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 340,
+        "wires": [
+            [
+                "1c3718353c57387b"
+            ]
+        ]
+    },
+    {
+        "id": "4ac9bd4714314626",
+        "type": "function",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "Create object",
+        "func": "const value = msg.payload;\nconst isForced = flow.get(\"heating_forced\")\nconst priority = flow.get(\"heating_priority\")\n\nmsg.payload = {}\nmsg.payload.value=value;\nmsg.payload.forced=isForced;\nmsg.payload.priority=priority;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 340,
+        "wires": [
+            [
+                "e51e43cf20e45bf5",
+                "59f3773f8f89c656"
+            ]
+        ]
+    },
+    {
+        "id": "bdb6f25dc36ce247",
+        "type": "ui_slider",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "",
+        "label": "Priority",
+        "tooltip": "",
+        "group": "7392875e7b7a6f5c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "payload",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "f959a2aa9dc5248a"
+            ]
+        ]
+    },
+    {
+        "id": "f959a2aa9dc5248a",
+        "type": "function",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "Store priority",
+        "func": "flow.set(\"lights_priority\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "111b839e4189939a",
+        "type": "function",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "Store priority",
+        "func": "flow.set(\"heating_priority\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "60e90e09d51b1a87",
+        "type": "ui_slider",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "",
+        "label": "Priority",
+        "tooltip": "",
+        "group": "42842512a8e82966",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "end",
+        "topic": "priority",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "111b839e4189939a"
+            ]
+        ]
+    },
+    {
+        "id": "1cb2e86f5a237ff6",
+        "type": "ui_slider",
+        "z": "cfa7ee81d964090b",
+        "g": "342825fcc1182138",
+        "name": "",
+        "label": "Threshold",
+        "tooltip": "When the current power consumption is higher, turn off some appliances",
+        "group": "8ea87fcca76b085c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "5000",
+        "step": "100",
+        "className": "",
+        "x": 400,
+        "y": 1000,
+        "wires": [
+            [
+                "1bbddf8349971962"
+            ]
+        ]
+    },
+    {
+        "id": "1bbddf8349971962",
+        "type": "mqtt out",
+        "z": "cfa7ee81d964090b",
+        "g": "342825fcc1182138",
+        "name": "Set threshold",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/set-treshold",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 770,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "3544b490d79ade90",
+        "type": "inject",
+        "z": "cfa7ee81d964090b",
+        "g": "35ecf59e65c091af",
+        "name": "Store priority Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "60e90e09d51b1a87",
+                "2ef24d5d674f9b20"
+            ]
+        ]
+    },
+    {
+        "id": "8f10df8165aaa1e5",
+        "type": "inject",
+        "z": "cfa7ee81d964090b",
+        "g": "e518d9f70552d45b",
+        "name": "Default values",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "bdb6f25dc36ce247",
+                "76ed955bd10b364a"
+            ]
+        ]
+    },
+    {
+        "id": "4c348bea978ab092",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "a44bb3e3a9662352",
+        "group": "8ea87fcca76b085c",
+        "order": 6,
+        "width": "6",
+        "height": "1",
+        "name": "Current power consumption",
+        "label": "Current power consumption",
+        "format": "{{msg.payload}} W",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "e6e0082e126525c2",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "a44bb3e3a9662352",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/energy/current",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 440,
+        "y": 900,
+        "wires": [
+            [
+                "4c348bea978ab092"
+            ]
+        ]
+    },
+    {
+        "id": "c3727a11607893d5",
+        "type": "ui_slider",
+        "z": "cfa7ee81d964090b",
+        "g": "e8b2760cd99f5da3",
+        "name": "",
+        "label": "Alarm Threshold",
+        "tooltip": "When the current power consumption is higher, turn off some appliances",
+        "group": "8ea87fcca76b085c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "5000",
+        "step": "100",
+        "className": "",
+        "x": 420,
+        "y": 1120,
+        "wires": [
+            [
+                "bdc6f75f42ebdb63"
+            ]
+        ]
+    },
+    {
+        "id": "bdc6f75f42ebdb63",
+        "type": "mqtt out",
+        "z": "cfa7ee81d964090b",
+        "g": "e8b2760cd99f5da3",
+        "name": "Set alarm threshold",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/set-alarm-treshold",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "838e41213a61d9fb",
+        "x": 790,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "b5cbad2d152cff9c",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "42b1291735bde90b",
+        "group": "42842512a8e82966",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "State",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 750,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "c212d56026322359",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "42b1291735bde90b",
+        "name": "Central Heating state",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 460,
+        "y": 1240,
+        "wires": [
+            [
+                "b5cbad2d152cff9c"
+            ]
+        ]
+    },
+    {
+        "id": "08cea5cfa40f839f",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "f671e77dd3dba9c7",
+        "group": "7392875e7b7a6f5c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "State",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 750,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "751310617030e001",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "f671e77dd3dba9c7",
+        "name": "Lights state",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 1340,
+        "wires": [
+            [
+                "08cea5cfa40f839f"
+            ]
+        ]
+    },
+    {
+        "id": "735e99123f4f389b",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "42b1291735bde90b",
+        "name": "Current Heating consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/centralHeating/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1000,
+        "y": 1240,
+        "wires": [
+            [
+                "befefbca18aa808d"
+            ]
+        ]
+    },
+    {
+        "id": "befefbca18aa808d",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "42b1291735bde90b",
+        "group": "42842512a8e82966",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current consumption",
+        "format": "{{msg.payload.value}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1320,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "32814f4e33d3214a",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "f671e77dd3dba9c7",
+        "name": "Current light consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/livingRoom/lights/energy",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 990,
+        "y": 1340,
+        "wires": [
+            [
+                "375626726db32c45"
+            ]
+        ]
+    },
+    {
+        "id": "375626726db32c45",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "f671e77dd3dba9c7",
+        "group": "7392875e7b7a6f5c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current consumption",
+        "format": "{{msg.payload.value}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1320,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "874fde88b381ddf8",
+        "type": "http request",
+        "z": "cfa7ee81d964090b",
+        "g": "e91b97c9e87110cd",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:1880/api/MUSI-IoT-2022/AlinaMartin/lastConsumption",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 730,
+        "y": 1460,
+        "wires": [
+            [
+                "2ae2a763d915356b"
+            ]
+        ]
+    },
+    {
+        "id": "2ae2a763d915356b",
+        "type": "ui_text",
+        "z": "cfa7ee81d964090b",
+        "g": "e91b97c9e87110cd",
+        "group": "7392875e7b7a6f5c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Average Power Consumption",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 980,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "2f7b744081e762ab",
+        "type": "mqtt in",
+        "z": "cfa7ee81d964090b",
+        "g": "e91b97c9e87110cd",
+        "name": "Current power consumption",
+        "topic": "MUSI-IoT-2022/AlinaMartin/general/energy/current",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "838e41213a61d9fb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 480,
+        "y": 1460,
+        "wires": [
+            [
+                "874fde88b381ddf8"
+            ]
+        ]
+    },
+    {
+        "id": "7392875e7b7a6f5c",
+        "type": "ui_group",
+        "name": "Living Room",
+        "tab": "af3d10dc3353bbb3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "838e41213a61d9fb",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "42842512a8e82966",
+        "type": "ui_group",
+        "name": "Heating",
+        "tab": "af3d10dc3353bbb3",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8ea87fcca76b085c",
+        "type": "ui_group",
+        "name": "General",
+        "tab": "af3d10dc3353bbb3",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "af3d10dc3353bbb3",
+        "type": "ui_tab",
+        "name": "Alina's and Martin's Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
